@@ -26,12 +26,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "RECENSIONI")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Recensioni.findAll", query = "SELECT r FROM Recensioni r"),
-    @NamedQuery(name = "Recensioni.findByIdMembro", query = "SELECT r FROM Recensioni r WHERE r.recensioniPK.idMembro = :idMembro"),
-    @NamedQuery(name = "Recensioni.findByIdEvento", query = "SELECT r FROM Recensioni r WHERE r.recensioniPK.idEvento = :idEvento"),
-    @NamedQuery(name = "Recensioni.findByCommento", query = "SELECT r FROM Recensioni r WHERE r.commento = :commento"),
-    @NamedQuery(name = "Recensioni.findByVoto", query = "SELECT r FROM Recensioni r WHERE r.voto = :voto")})
 public class Recensione implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
