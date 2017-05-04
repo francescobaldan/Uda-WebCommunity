@@ -22,7 +22,7 @@ public class DAORecensioni {
     private final SessionFactory sessionFactory=hibernate.HibernateUtil.getSessionFactory();
     
     public Integer addRecensione(int idMembro, int idEvento, String commento, int voto){
-        Session session = sessionFactory.openSession();
+        Session session =sessionFactory.openSession();
         Transaction tx=null;
         Integer idRecensione=null;
 
@@ -41,7 +41,7 @@ public class DAORecensioni {
     }
     
     public List<Recensione> showRecensioni(){
-        Session session = sessionFactory.openSession();
+        Session session =sessionFactory.openSession();
         Transaction tx=null;
         List listaR=null;
         try{
@@ -57,5 +57,44 @@ public class DAORecensioni {
         return listaR;
       
     }
+    
+    public void updateRecensione(int idMembro, int idEvento, String commento, int voto){
+        Session session =sessionFactory.openSession();
+        Transaction tx=null;
+        Integer idRecensione=null;
+
+        try{
+            tx=session.beginTransaction();
+            Recensione rec=new Recensione(idMembro, idEvento, commento, voto);
+            session.update(rec);
+            tx.commit();    
+        }catch(HibernateException e){
+            if (tx!=null) tx.rollback();
+            e.printStackTrace();
+        }finally{
+            session.close();
+        }
+        return ;
+    }
+    
+    /*
+    public List<Evento> showEventiSvolti(){
+        Session session =sessionFactory.openSession();
+        Transaction tx=null;
+        List<Evento> listaE=null;
+        
+        try{
+            tx=session.beginTransaction();
+            listaE=session.createQuery("From EVENTI Where Data<current_date() Order by Luogo").list();
+            tx.commit();
+        }catch(HibernateException e){
+            if (tx!=null) tx.rollback();
+            e.printStackTrace();
+        }finally{
+            session.close();
+        }
+        return listaE;
+    }
+    */
 }
 

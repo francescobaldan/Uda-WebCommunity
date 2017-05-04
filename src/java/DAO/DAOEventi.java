@@ -45,10 +45,10 @@ public class DAOEventi {
     public List<Evento> showEventi(){
         Session session =sessionFactory.openSession();
         Transaction tx=null;
-        List listaE=null;
+        List<Evento> listaE=null;
         try{
             tx=session.beginTransaction();
-            listaE = session.createQuery("From Evento").list();
+            listaE=session.createQuery("From EVENTI").list();
             tx.commit();
         }catch(HibernateException e){
             if (tx!=null) tx.rollback();
@@ -63,7 +63,7 @@ public class DAOEventi {
     public List<Evento> showEventiSvolti(){
         Session session =sessionFactory.openSession();
         Transaction tx=null;
-        List listaE=null;
+        List<Evento> listaE=null;
         
         try{
             tx=session.beginTransaction();

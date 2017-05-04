@@ -57,7 +57,7 @@ public class DAOMembri {
       
     }
     
-    public List<Membro> showNoCommento(){
+    public List<Membro> showMembriNoCommento(){
         Session session =sessionFactory.openSession();
         Transaction tx=null;
         List listaM=null;
