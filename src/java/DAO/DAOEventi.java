@@ -22,7 +22,7 @@ public class DAOEventi {
     
     private final SessionFactory sessionFactory=hibernate.HibernateUtil.getSessionFactory();
     
-    public Integer addEvento(int id, String titolo, String luogo, Calendar data){
+    public Integer addEvento(int id, String titolo, String luogo, Date data){
         Session session =sessionFactory.openSession();
         Transaction tx=null;
         Integer idEvento=null;

@@ -14,11 +14,9 @@
             <span>${e.getIdEvento()}</span><br>
             <span>${e.titolo}</span><br>
             <span>${e.luogo}</span><br>
-            <span>${e.data}</span><br>
-            <p>Formatted Date (1): <fmt:formatDate type = "time" 
-            value = "${now}" /></p>
+            <span><fmt:formatDate type = "time" 
+            value = "${e.data}" /></span><br>
             
-            https://www.tutorialspoint.com/jsp/jstl_format_formatdate_tag.htm
             
             
             <span>${e.categoria}</span><br><br><br>

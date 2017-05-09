@@ -59,7 +59,7 @@ public class Evento implements Serializable {
     @NotNull
     @Column(name = "Data")
     @Temporal(TemporalType.DATE)
-    private Calendar data;
+    private Date data;
     @JoinTable(name = "PARTECIPAZIONI", joinColumns = {
         @JoinColumn(name = "IdEvento", referencedColumnName = "IdEvento")}, inverseJoinColumns = {
         @JoinColumn(name = "IdArtista", referencedColumnName = "IdArtista")})
@@ -78,7 +78,7 @@ public class Evento implements Serializable {
         this.idEvento = idEvento;
     }
 
-    public Evento(Integer idEvento, String titolo, String luogo, Calendar data) {
+    public Evento(Integer idEvento, String titolo, String luogo, Date data) {
         this.idEvento = idEvento;
         this.titolo = titolo;
         this.luogo = luogo;
@@ -109,11 +109,11 @@ public class Evento implements Serializable {
         this.luogo = luogo;
     }
 
-    public Calendar getData() {
+    public Date getData() {
         return data;
     }
 
-    public void setData(Calendar data) {
+    public void setData(Date data) {
         this.data = data;
     }
 
