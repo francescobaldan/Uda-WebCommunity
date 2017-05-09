@@ -14,12 +14,11 @@
             <span>${e.getIdEvento()}</span><br>
             <span>${e.titolo}</span><br>
             <span>${e.luogo}</span><br>
-            <span><fmt:formatDate type = "time" 
-            value = "${e.data}" /></span><br>
+            <span><fmt:formatDate pattern = "dd-MM-yyyy" value = "${e.data}" /></span><br>
             
             
             
-            <span>${e.categoria}</span><br><br><br>
+            <span>${e.categoria.getNome()}</span><br><br><br>
         </c:forEach>
     </body>
 </html>
