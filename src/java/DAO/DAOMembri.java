@@ -45,7 +45,7 @@ public class DAOMembri {
         List listaM=null;
         try{
             tx=session.beginTransaction();
-            listaM=session.createQuery("From MEMBRI").list();
+            listaM=session.createQuery("From Membro").list();
             tx.commit();
         }catch(HibernateException e){
             if (tx!=null) tx.rollback();
@@ -63,7 +63,7 @@ public class DAOMembri {
         List listaM=null;
         try{
             tx=session.beginTransaction();
-            listaM=session.createQuery("SELECT IdMembro, Nickname FROM MEMBRI MINUS (SELECT IdMembro FROM RECENSIONI)").list();
+            listaM=session.createQuery("SELECT idMembro, nickname FROM Membro MINUS (SELECT idMembro FROM Recensione)").list();
             tx.commit();
         }catch(HibernateException e){
             if (tx!=null) tx.rollback();

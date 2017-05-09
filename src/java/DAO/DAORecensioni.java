@@ -46,7 +46,7 @@ public class DAORecensioni {
         List listaR=null;
         try{
             tx=session.beginTransaction();
-            listaR=session.createQuery("From RECENSIONI").list();
+            listaR=session.createQuery("From Recensione").list();
             tx.commit();
         }catch(HibernateException e){
             if (tx!=null) tx.rollback();
