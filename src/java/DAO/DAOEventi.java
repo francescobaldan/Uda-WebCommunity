@@ -67,7 +67,7 @@ public class DAOEventi {
         
         try{
             tx=session.beginTransaction();
-            listaE=session.createQuery("From EVENTI Where Data<current_date() Order by Luogo").list();
+            listaE=session.createQuery("From Evento Where data<current_date() Order by luogo").list();
             tx.commit();
         }catch(HibernateException e){
             if (tx!=null) tx.rollback();
