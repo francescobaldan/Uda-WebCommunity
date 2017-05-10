@@ -40,7 +40,7 @@
         <main class="mdl-layout__content">
           <div class="page-content">
                     
-            <div class="spacer mdl-color--primary"></div>
+            <div class="spacer mdl-color--primary mdl-shadow--2dp"></div>
                     
             <div class="mdl-card mdl-shadow--2dp main-container">
               

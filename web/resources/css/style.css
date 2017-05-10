@@ -1,5 +1,5 @@
 header {
-  box-shadow: none;
+  box-shadow: none!important;
 }
 
 .spacer {
@@ -7,8 +7,8 @@ header {
   height: 192px;
 }
 
-.main-controller {
-  width: 80%;
-  top: -100px;
-  margin: 0 auto;
+.main-container {
+  width: 80%!important;
+  top: -100px!important;
+  margin: 0 auto!important;
 }
