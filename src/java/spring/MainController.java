@@ -7,6 +7,7 @@ import DAO.DAOCategorie;
 import DAO.DAOEventi;
 import Mapping.Categoria;
 import Mapping.Evento;
+import Mapping.Recensione;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
@@ -40,15 +41,7 @@ public class MainController
         
         List<Evento> lista = de.showEventi();
         map.put("lista", lista);
-       /*Persona per = new Persona(10,"Nome Bello");
-
-        PersoneDAO p = new PersoneDAO();
-        //p.aggiungiPersona(per);
-        List<Persona> pers = p.leggiPersone();
-
-        map.put("pers", pers);
-
-        */return "index";
+        return "index";
     }
     
     @RequestMapping(value = "/categoria", params = {"idC"}, method = RequestMethod.GET)
@@ -62,5 +55,15 @@ public class MainController
         map.put("categoria", listaCat.get(idC-1));
         map.put("eventiCategoria", eventiCategoria);
         return "specCategoria";
+    }
+    
+    @RequestMapping(value = "/recensioniEvento", params = {"idE"}, method = RequestMethod.GET)
+    public String recensioniEvento(ModelMap map, @RequestParam(value="idE") int idE)
+    {
+        DAOEventi de = new DAOEventi();
+        
+        List<Recensione> listaRec = de.showRecensioniEvento(idE);
+        map.put("listaRec", listaRec);;
+        return "recensioniEvento";
     }
 }

@@ -6,6 +6,7 @@
 package DAO;
 
 import Mapping.Evento;
+import Mapping.Recensione;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -76,5 +77,23 @@ public class DAOEventi {
             session.close();
         }
         return listaE;
+    }
+    
+    public List<Recensione> showRecensioniEvento(int idE){
+        Session session =sessionFactory.openSession();
+        Transaction tx=null;
+        List<Recensione> listaR=null;
+        try{
+            tx=session.beginTransaction();
+            listaR=session.createQuery("Select recensioniCollection From Evento where idEvento="+idE).list();
+            tx.commit();
+        }catch(HibernateException e){
+            if (tx!=null) tx.rollback();
+            e.printStackTrace();
+        }finally{
+            session.close();
+        }
+        return listaR;
+      
     }
 }
