@@ -5,9 +5,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Recensioni</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <c:forEach items="${listaRec}" var="r">
+                      <div class="mdl-list__item">
+                        <span>${r.membri.nickname}</span><br>
+                        <span>${r.commento}</span><br>
+                        <span>${r.voto}</span><br>
+                      </div>
+        </c:forEach>
     </body>
 </html>
