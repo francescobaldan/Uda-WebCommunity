@@ -57,10 +57,11 @@ public class MainController
         return "specCategoria";
     }
     
-    @RequestMapping(value = "/recensioniEvento", params = {"idE"}, method = RequestMethod.GET)
+    @RequestMapping(value = "/evento", params = {"idE"}, method = RequestMethod.GET)
     public String recensioniEvento(ModelMap map, @RequestParam(value="idE") int idE)
     {
         DAOEventi dao = new DAOEventi();
+        
         
         List<Recensione> listaRec = dao.showRecensioniEvento(idE);
         map.put("listaRec", listaRec);;

@@ -79,6 +79,24 @@ public class DAOEventi {
         return listaE;
     }
     
+    public Evento showEvento(int idE){
+        Session session =sessionFactory.openSession();
+        Transaction tx=null;
+        Evento event=null;
+        try{
+            tx=session.beginTransaction();
+            event=(Evento) session.createQuery("From Evento Where idEvento="idE);
+            tx.commit();
+        }catch(HibernateException e){
+            if (tx!=null) tx.rollback();
+            e.printStackTrace();
+        }finally{
+            session.close();
+        }
+        return event;
+      
+    }
+    
     public List<Recensione> showRecensioniEvento(int idE){
         Session session =sessionFactory.openSession();
         Transaction tx=null;

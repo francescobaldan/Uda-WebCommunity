@@ -5,7 +5,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Recensioni</title>
+        <title>Evento</title>
     </head>
     <body>
         <c:forEach items="${listaRec}" var="r">
