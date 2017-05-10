@@ -85,7 +85,7 @@ public class DAOEventi {
         Evento event=null;
         try{
             tx=session.beginTransaction();
-            event=(Evento) session.createQuery("From Evento Where idEvento="idE);
+            event=(Evento) session.createQuery("From Evento Where idEvento="+idE);
             tx.commit();
         }catch(HibernateException e){
             if (tx!=null) tx.rollback();
@@ -112,6 +112,31 @@ public class DAOEventi {
             session.close();
         }
         return listaR;
-      
+    }
+        
+    public int votoMedio (int idE){
+        Session session =sessionFactory.openSession();
+        Transaction tx=null;
+        List recensioni=null;
+        Recensione rec=null;
+        int somma=0;
+        int votoMedio=0;
+        try{
+            tx=session.beginTransaction();
+            recensioni=session.createQuery("Select recensioniCollection From Evento where idEvento="+idE).list();
+            for(int i=0; i<recensioni.size(); i++){
+                rec=(Recensione)recensioni.get(i);
+                somma+=rec.getVoto();
+            }
+            votoMedio=somma/recensioni.size();
+            tx.commit();
+        }catch(HibernateException e){
+            if (tx!=null) tx.rollback();
+            e.printStackTrace();
+        }finally{
+            session.close();
+        }
+        return votoMedio;
+        
     }
 }
