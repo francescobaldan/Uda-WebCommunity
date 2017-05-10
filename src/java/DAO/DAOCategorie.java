@@ -76,4 +76,22 @@ public class DAOCategorie {
         return listaE;
       
     }
+    
+    public List<Evento> eventiLuogoCategoria(int idC, String luogo){
+        Session session =sessionFactory.openSession();
+        Transaction tx=null;
+        List<Evento> listaE=null;
+        try{
+            tx=session.beginTransaction();
+            listaE=session.createQuery("From Evento Where idCategoria="+idC+" and luogo="+luogo).list();
+            tx.commit();
+        }catch(HibernateException e){
+            if (tx!=null) tx.rollback();
+            e.printStackTrace();
+        }finally{
+            session.close();
+        }
+        return listaE;
+      
+    }
 }

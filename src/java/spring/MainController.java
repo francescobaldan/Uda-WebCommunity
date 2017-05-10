@@ -36,11 +36,11 @@ public class MainController
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(ModelMap map)
     {
-        
         DAOEventi dao = new DAOEventi();
         
         List<Evento> lista = dao.showEventi();
         map.put("lista", lista);
+        
         return "index";
     }
     
@@ -54,19 +54,21 @@ public class MainController
         map.put("listaCat", listaCat);
         map.put("categoria", listaCat.get(idC-1));
         map.put("eventiCategoria", eventiCategoria);
+        
         return "specCategoria";
     }
     
     @RequestMapping(value = "/filtroEventi", method = RequestMethod.GET)
-    public String categoria(ModelMap map, @RequestParam(value="idC") int idC, @RequestParam(value="luogo") String luogo)
+    public String categoria(ModelMap map, @RequestParam(value="idCat") int idC, @RequestParam(value="luogo") String luogo)
     {
         DAOCategorie dao = new DAOCategorie();
         
         List<Categoria> listaCat = dao.showCategorie();
-        List<Evento> eventiCategoria = dao.eventiCategoria(idC);        
-        map.put("listaCat", listaCat);
+        List<Evento> eventiCategoria = dao.eventiLuogoCategoria(idC, luogo);        
         map.put("categoria", listaCat.get(idC-1));
         map.put("eventiCategoria", eventiCategoria);
+        map.put("idCat", idC);
+        
         return "specCategoria";
     }
     

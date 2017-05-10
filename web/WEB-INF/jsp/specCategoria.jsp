@@ -21,5 +21,13 @@
                 </li>
             </c:forEach>
         </ul>
+        <div>
+            <form method="get" action="<c:url value="./filtroEventi">">
+                <input type="hidden" name="idCat" value="${idCat}">
+                <input type="text" name="luogo" id="luogo-field">
+                <label for="luogo-field">Specifica luogo</label>
+                <input type=""submit>
+            </form>
+        </div>
     </body>
 </html>
