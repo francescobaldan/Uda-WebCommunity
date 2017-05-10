@@ -12,3 +12,25 @@ header {
   top: -100px!important;
   margin: 0 auto!important;
 }
+
+.login-field-container {
+  width: auto!important;
+  margin-right: 8px!important;
+}
+
+.login-field {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3)!important;
+}
+
+.login-field-label {
+  color: rgba(255, 255, 255, 0.7)!important;
+}
+
+.mdl-textfield__label:after {
+  background-color: rgba(255, 255, 255, 1)!important;
+}
+
+.login-submit {
+  color: rgba(0, 0, 0, 0.87)!important;
+  background: #FAFAFA!important;
+}

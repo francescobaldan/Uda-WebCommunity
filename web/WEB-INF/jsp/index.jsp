@@ -20,8 +20,10 @@
         <div class="mdl-layout-icon"></div>
         <div class="mdl-layout__header-row">
           <span class="mdl-layout__title">Simple Layout</span>
+          <div class="mdl-layout-spacer"></div>
+          <jsp:include page="login.jsp" />
         </div>
-        </header>
+      </header>
         <div class="mdl-layout__drawer">
           <span class="mdl-layout-title">Title</span>
           <nav class="mdl-navigation">
