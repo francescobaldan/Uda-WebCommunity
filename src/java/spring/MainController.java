@@ -37,9 +37,9 @@ public class MainController
     public String index(ModelMap map)
     {
         
-        DAOEventi de = new DAOEventi();
+        DAOEventi dao = new DAOEventi();
         
-        List<Evento> lista = de.showEventi();
+        List<Evento> lista = dao.showEventi();
         map.put("lista", lista);
         return "index";
     }
@@ -47,10 +47,10 @@ public class MainController
     @RequestMapping(value = "/categoria", params = {"idC"}, method = RequestMethod.GET)
     public String categoria(ModelMap map, @RequestParam(value="idC") int idC)
     {
-        DAOCategorie de = new DAOCategorie();
+        DAOCategorie dao = new DAOCategorie();
         
-        List<Categoria> listaCat = de.showCategorie();
-        List<Evento> eventiCategoria = de.eventiCategoria(idC);
+        List<Categoria> listaCat = dao.showCategorie();
+        List<Evento> eventiCategoria = dao.eventiCategoria(idC);
         map.put("listaCat", listaCat);
         map.put("categoria", listaCat.get(idC-1));
         map.put("eventiCategoria", eventiCategoria);
@@ -60,9 +60,9 @@ public class MainController
     @RequestMapping(value = "/recensioniEvento", params = {"idE"}, method = RequestMethod.GET)
     public String recensioniEvento(ModelMap map, @RequestParam(value="idE") int idE)
     {
-        DAOEventi de = new DAOEventi();
+        DAOEventi dao = new DAOEventi();
         
-        List<Recensione> listaRec = de.showRecensioniEvento(idE);
+        List<Recensione> listaRec = dao.showRecensioniEvento(idE);
         map.put("listaRec", listaRec);;
         return "recensioniEvento";
     }
