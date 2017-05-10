@@ -59,13 +59,47 @@ public class DAOCategorie {
       
     }
     
+    public Categoria cercaCategoria(int idC){
+        Session session =sessionFactory.openSession();
+        Transaction tx=null;
+        Categoria cat=null;
+        try{
+            tx=session.beginTransaction();
+            cat= (Categoria)session.createQuery("From Categoria Where idCategoria="+idC);
+            tx.commit();
+        }catch(HibernateException e){
+            if (tx!=null) tx.rollback();
+            e.printStackTrace();
+        }finally{
+            session.close();
+        }
+        return cat;
+    }
+    
+        public Categoria cercaCategoria(String nome){
+        Session session =sessionFactory.openSession();
+        Transaction tx=null;
+        Categoria cat=null;
+        try{
+            tx=session.beginTransaction();
+            cat= (Categoria)session.createQuery("From Categoria Where nome="+nome);
+            tx.commit();
+        }catch(HibernateException e){
+            if (tx!=null) tx.rollback();
+            e.printStackTrace();
+        }finally{
+            session.close();
+        }
+        return cat;
+    }
+    
     public List<Evento> eventiCategoria(int idC){
         Session session =sessionFactory.openSession();
         Transaction tx=null;
         List<Evento> listaE=null;
         try{
             tx=session.beginTransaction();
-            listaE=session.createQuery("From Evento Where idCategoria="+idC).list();
+            listaE=session.createQuery("From Evento Where idCategoria="+idC+" Order by data").list();
             tx.commit();
         }catch(HibernateException e){
             if (tx!=null) tx.rollback();
@@ -83,7 +117,7 @@ public class DAOCategorie {
         List<Evento> listaE=null;
         try{
             tx=session.beginTransaction();
-            listaE=session.createQuery("From Evento Where idCategoria="+idC+" and luogo="+luogo).list();
+            listaE=session.createQuery("From Evento Where idCategoria="+idC+" and luogo="+luogo+" Order by data").list();
             tx.commit();
         }catch(HibernateException e){
             if (tx!=null) tx.rollback();

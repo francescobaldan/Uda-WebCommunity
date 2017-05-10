@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import Mapping.Categoria;
 import Mapping.Evento;
 import Mapping.Recensione;
 import java.util.Calendar;
@@ -23,14 +24,14 @@ public class DAOEventi {
     
     private final SessionFactory sessionFactory=hibernate.HibernateUtil.getSessionFactory();
     
-    public Integer addEvento(int id, String titolo, String luogo, Date data){
+    public Integer addEvento(int id, String titolo, String luogo, Date data, Categoria cat){
         Session session =sessionFactory.openSession();
         Transaction tx=null;
         Integer idEvento=null;
 
         try{
             tx=session.beginTransaction();
-            Evento event=new Evento(id, titolo, luogo, data);
+            Evento event=new Evento(id, titolo, luogo, data, cat);
             idEvento=(Integer) session.save(event);
             tx.commit();    
         }catch(HibernateException e){

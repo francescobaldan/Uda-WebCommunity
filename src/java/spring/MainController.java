@@ -5,10 +5,12 @@ package spring;
 
 import DAO.DAOCategorie;
 import DAO.DAOEventi;
+import DAO.DAORecensioni;
 import Mapping.Categoria;
 import Mapping.Evento;
 import Mapping.Recensione;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -86,4 +88,28 @@ public class MainController
 
         return "recensioniEvento";
     }
+    
+    @RequestMapping(value = "/addEvento", method = RequestMethod.GET)
+    public String addEvento(ModelMap map, @RequestParam(value="titolo") String titolo, @RequestParam(value="luogo") String luogo, @RequestParam(value="data") Date data, @RequestParam(value="categoria") String categoria)
+    {
+        DAOEventi daoe = new DAOEventi();
+        DAOCategorie daoc = new DAOCategorie();
+        
+        List eventi=daoe.showEventi();
+        Categoria cat=daoc.cercaCategoria(categoria);
+        daoe.addEvento(eventi.size(), titolo, luogo, data, cat);
+        
+        return "index";
+    }
+    
+    @RequestMapping(value = "/addRecensione", method = RequestMethod.GET)
+    public String addRecensione(ModelMap map, @RequestParam(value="idMembro") int idMembro, @RequestParam(value="idEvento") int idEvento, @RequestParam(value="commento") String commento, @RequestParam(value="voto") int voto)
+    {
+        DAORecensioni dao=new DAORecensioni();
+        
+        dao.addRecensione(idMembro, idEvento, commento, voto);
+        
+        return "index";
+    }
+    
 }

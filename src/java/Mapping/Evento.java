@@ -78,11 +78,12 @@ public class Evento implements Serializable {
         this.idEvento = idEvento;
     }
 
-    public Evento(Integer idEvento, String titolo, String luogo, Date data) {
+    public Evento(Integer idEvento, String titolo, String luogo, Date data, Categoria categoria) {
         this.idEvento = idEvento;
         this.titolo = titolo;
         this.luogo = luogo;
         this.data = data;
+        this.categoria=categoria;
     }
 
     public Integer getIdEvento() {
