@@ -2,8 +2,6 @@ html, body {
   background-color: #F5F5F5;
 }
 
-
-
 /* Fix drawer icon on mobile mode*/
 
 @media (max-width: 1024px) {
@@ -39,7 +37,7 @@ header {
 }
 
 .main-container {
-  width: 80%!important;
+  width: 70%!important;
   top: -100px!important;
   margin: 0 auto!important;
 }
@@ -72,4 +70,16 @@ header {
 
 .mdl-card__supporting-text {
   width: auto!important;
+}
+
+#subtitle {
+  position: relative;
+  top: -42px;
+  padding-bottom: 0;
+}
+
+.material-icons.mdl-list__item-avatar {
+  padding-top: 8px!important;
+  text-align: center!important;
+  font-size: 24px!important;
 }
