@@ -10,6 +10,7 @@ import Mapping.Evento;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -65,7 +66,7 @@ public class DAOCategorie {
         Categoria cat=null;
         try{
             tx=session.beginTransaction();
-            cat= (Categoria)session.createQuery("From Categoria Where idCategoria="+idC);
+            cat=(Categoria) session.createQuery("From Categoria Where idCategoria="+idC);
             tx.commit();
         }catch(HibernateException e){
             if (tx!=null) tx.rollback();
@@ -82,7 +83,7 @@ public class DAOCategorie {
         Categoria cat=null;
         try{
             tx=session.beginTransaction();
-            cat= (Categoria)session.createQuery("From Categoria Where nome="+nome);
+            cat=(Categoria) session.createQuery("From Categoria Where nome="+nome);
             tx.commit();
         }catch(HibernateException e){
             if (tx!=null) tx.rollback();
@@ -99,7 +100,7 @@ public class DAOCategorie {
         List<Evento> listaE=null;
         try{
             tx=session.beginTransaction();
-            listaE=session.createQuery("From Evento Where idCategoria="+idC+" Order by data").list();
+            listaE=session.createQuery("Select eventiCollection From Categoria Where idCategoria="+idC+" Order by data").list();
             tx.commit();
         }catch(HibernateException e){
             if (tx!=null) tx.rollback();
