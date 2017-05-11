@@ -79,6 +79,7 @@ public class MainController
         map.put("listaCat", listaCat);
         map.put("categoria", listaCat.get(idC-1));
         map.put("eventiCategoria", eventiCategoria);
+        map.put("idCat", idC);
         
         return "specCategoria";
     }

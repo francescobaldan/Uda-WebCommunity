@@ -7,6 +7,7 @@ package DAO;
 
 import Mapping.Categoria;
 import Mapping.Evento;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.HibernateException;
@@ -115,10 +116,17 @@ public class DAOCategorie {
     public List<Evento> eventiLuogoCategoria(int idC, String luogo){
         Session session =sessionFactory.openSession();
         Transaction tx=null;
-        List<Evento> listaE=null;
+        List<Evento> listaProv=null;
+        ArrayList<Evento> listaE=new ArrayList<Evento>();
         try{
             tx=session.beginTransaction();
-            listaE=session.createQuery("From Evento Where idCategoria="+idC+" and luogo="+luogo+" Order by data").list();
+            listaProv=session.createQuery("Select eventiCollection From Categoria Where idCategoria="+idC+" Order by data").list();
+            for(int i=0; i<listaProv.size(); i++){
+                Evento temp=listaProv.get(i);
+                if(temp.getLuogo().equals(luogo)==true){
+                    listaE.add(temp);
+                }
+            }
             tx.commit();
         }catch(HibernateException e){
             if (tx!=null) tx.rollback();
