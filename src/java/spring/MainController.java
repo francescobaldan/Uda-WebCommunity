@@ -125,8 +125,8 @@ public class MainController
         Date d =null;
         try{
             DateFormat df = new SimpleDateFormat ("yyyy/MM/gg");
-        df.setLenient (false);
-        d = df.parse (data);
+            df.setLenient (false);
+            d = df.parse (data);
         }catch(ParseException e){ }
         List eventi=daoe.showEventi();
         Categoria cat=daoc.cercaCategoria(categoria);
