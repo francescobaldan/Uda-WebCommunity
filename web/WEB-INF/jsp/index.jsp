@@ -9,7 +9,7 @@
     <title>Eventi</title>
     <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-teal.min.css">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-amber.min.css">
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
   </head>
 
@@ -27,15 +27,20 @@
         <div class="mdl-layout__drawer">
           <span class="mdl-layout-title">Title</span>
           <nav class="mdl-navigation">
-            <a class="mdl-navigation__link active" href="">
+            <a class="mdl-navigation__link active" href="<c:url value="/" />">
               <span class="mdl-list__item-primary-content">
                 <i class="material-icons mdl-list__item-icon">home</i>
               Home</span>
             </a>
             <a class="mdl-navigation__link" href="<c:url value="/categorie" />">
                <span class="mdl-list__item-primary-content">
-                  <i class="material-icons mdl-list__item-icon">playlist_add</i>
+                  <i class="material-icons mdl-list__item-icon">format_align_justify</i>
                 Categorie</span>
+            </a>
+               <a class="mdl-navigation__link" href="<c:url value="/artisti" />">
+               <span class="mdl-list__item-primary-content">
+                  <i class="material-icons mdl-list__item-icon">people</i>
+                Artisti</span>
             </a>
           </nav>
         </div>

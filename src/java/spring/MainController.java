@@ -57,6 +57,18 @@ public class MainController
         return "categorie";
     }
     
+    /*
+    @RequestMapping(value = "/artisti", method = RequestMethod.GET)
+    public String artisti(ModelMap map)
+    {
+        DAOCategorie dao = new DAOCategorie();
+        
+        List<Categoria> listaCat = dao.showCategorie();
+        map.put("listaCat", listaCat);
+        
+        return "categorie";
+    }*/
+    
     @RequestMapping(value = "/categoria", params = {"idC"}, method = RequestMethod.GET)
     public String categoria(ModelMap map, @RequestParam(value="idC") int idC)
     {

@@ -2,8 +2,29 @@ html, body {
   background-color: #F5F5F5;
 }
 
+// Fix drawer icon on mobile mode
+
+@media (max-width: 1024px) {
+  .mdl-layout__container .mdl-layout .mdl-layout__drawer-button i {
+    margin: 12px!important;
+    color: white!important;
+  }
+}
+
 header {
   box-shadow: none!important;
+}
+
+.mdl-layout-title {
+  padding-left: 24px!important;
+}
+
+.mdl-navigation__link {
+  padding-left: 24px!important;
+}
+
+.mdl-navigation__link .mdl-list__item-primary-content i {
+  margin-right: 16px!important;
 }
 
 .mdl-navigation__link.active {
@@ -41,4 +62,8 @@ header {
 .login-submit {
   color: rgba(0, 0, 0, 0.87)!important;
   background: #FAFAFA!important;
+}
+
+.mdl-card__supporting-text {
+  width: auto!important;
 }
