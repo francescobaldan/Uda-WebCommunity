@@ -13,9 +13,9 @@
         <h6>${event.data}</h6>
         <c:forEach items="${listaRec}" var="r">
                       <div class="mdl-list__item">
-                        <span>${r.membri.nickname}</span><br>
-                        <span>${r.commento}</span><br>
-                        <span>${r.voto}</span><br>
+                        <span>${r.getMembro().getNickname()}</span><br>
+                        <span>${r.getCommento()}</span><br>
+                        <span>${r.getVoto()}</span><br>
                       </div>
         </c:forEach>
         <h4>${mediaVoto}</h4>

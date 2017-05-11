@@ -106,10 +106,10 @@ public class DAOEventi {
     public Evento showEvento(int idE){
         Session session =sessionFactory.openSession();
         Transaction tx=null;
-        Evento event=null;
+        List<Evento> event=null;
         try{
             tx=session.beginTransaction();
-            event=(Evento) session.createQuery("From Evento Where idEvento="+idE);
+            event=session.createQuery("From Evento Where idEvento="+idE).list();
             tx.commit();
         }catch(HibernateException e){
             if (tx!=null) tx.rollback();
@@ -117,7 +117,7 @@ public class DAOEventi {
         }finally{
             session.close();
         }
-        return event;
+        return event.get(0);
       
     }
     
@@ -127,7 +127,7 @@ public class DAOEventi {
         List<Recensione> listaR=null;
         try{
             tx=session.beginTransaction();
-            listaR=session.createQuery("Select recensioniCollection From Evento where idEvento="+idE).list();
+            listaR=session.createQuery("Select recensioneCollection From Evento where idEvento="+idE).list();
             tx.commit();
         }catch(HibernateException e){
             if (tx!=null) tx.rollback();
@@ -141,15 +141,15 @@ public class DAOEventi {
     public int votoMedio (int idE){
         Session session =sessionFactory.openSession();
         Transaction tx=null;
-        List recensioni=null;
+        List<Recensione> recensioni=null;
         Recensione rec=null;
         int somma=0;
         int votoMedio=0;
         try{
             tx=session.beginTransaction();
-            recensioni=session.createQuery("Select recensioniCollection From Evento where idEvento="+idE).list();
+            recensioni=session.createQuery("Select recensioneCollection From Evento where idEvento="+idE).list();
             for(int i=0; i<recensioni.size(); i++){
-                rec=(Recensione)recensioni.get(i);
+                rec=recensioni.get(i);
                 somma+=rec.getVoto();
             }
             votoMedio=somma/recensioni.size();

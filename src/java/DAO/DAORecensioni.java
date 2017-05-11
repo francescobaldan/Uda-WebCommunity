@@ -65,13 +65,13 @@ public class DAORecensioni {
         return ;
     }
     
-    public List<Recensione> showRecensioni(){
+    public List<Recensione> showRecensioni(int idE){
         Session session =sessionFactory.openSession();
         Transaction tx=null;
-        List listaR=null;
+        List<Recensione> listaR=null;
         try{
             tx=session.beginTransaction();
-            listaR=session.createQuery("From Recensione").list();
+            listaR=session.createQuery("Select recensioneCollection From Evento Where idEvento="+idE).list();
             tx.commit();
         }catch(HibernateException e){
             if (tx!=null) tx.rollback();
@@ -86,8 +86,6 @@ public class DAORecensioni {
     public void updateRecensione(int idMembro, int idEvento, String commento, int voto){
         Session session =sessionFactory.openSession();
         Transaction tx=null;
-        Integer idRecensione=null;
-
         try{
             tx=session.beginTransaction();
             Recensione rec=new Recensione(idMembro, idEvento, commento, voto);

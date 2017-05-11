@@ -179,8 +179,5 @@ public class MainController
         map.put("lista", lista);
         
         return "index";
-    }
-    
-    
-    
+    }  
 }
