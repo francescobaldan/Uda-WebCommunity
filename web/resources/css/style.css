@@ -2,6 +2,8 @@ html, body {
   background-color: #F5F5F5;
 }
 
+
+
 // Fix drawer icon on mobile mode
 
 @media (max-width: 1024px) {
@@ -62,6 +64,10 @@ header {
 .login-submit {
   color: rgba(0, 0, 0, 0.87)!important;
   background: #FAFAFA!important;
+}
+
+.mdl-card .mdl-card__title {
+  width: 100%!important;
 }
 
 .mdl-card__supporting-text {
