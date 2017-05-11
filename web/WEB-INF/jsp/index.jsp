@@ -70,6 +70,7 @@
                         <span>${e.luogo}</span><br>
                         <span><fmt:formatDate pattern = "dd-MM-yyyy" value = "${e.data}" /></span><br><br>
                         <a href="<c:url value="/categoria?idC=${e.categoria.idCategoria}" />">${e.categoria.nome}</a>
+                        <a href="<c:url value="/deleteEvento?idE=${e.idEvento}" />">Elimina</a>
                       </div>
                     </c:forEach>
                   

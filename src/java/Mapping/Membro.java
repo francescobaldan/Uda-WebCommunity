@@ -28,12 +28,21 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author FSEVERI\sbrizza3331
+ * @author Sprizzetto
  */
 @Entity
 @Table(name = "MEMBRI")
 @XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Membro.findAll", query = "SELECT m FROM Membro m")
+    , @NamedQuery(name = "Membro.findByIdMembro", query = "SELECT m FROM Membro m WHERE m.idMembro = :idMembro")
+    , @NamedQuery(name = "Membro.findByNickname", query = "SELECT m FROM Membro m WHERE m.nickname = :nickname")
+    , @NamedQuery(name = "Membro.findByPassword", query = "SELECT m FROM Membro m WHERE m.password = :password")
+    , @NamedQuery(name = "Membro.findByNome", query = "SELECT m FROM Membro m WHERE m.nome = :nome")
+    , @NamedQuery(name = "Membro.findByCognome", query = "SELECT m FROM Membro m WHERE m.cognome = :cognome")
+    , @NamedQuery(name = "Membro.findByMail", query = "SELECT m FROM Membro m WHERE m.mail = :mail")})
 public class Membro implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -69,9 +78,9 @@ public class Membro implements Serializable {
         @JoinColumn(name = "IdMembro", referencedColumnName = "IdMembro")}, inverseJoinColumns = {
         @JoinColumn(name = "IdCategoria", referencedColumnName = "IdCategoria")})
     @ManyToMany
-    private Collection<Categoria> categorieCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "membri")
-    private Collection<Recensione> recensioniCollection;
+    private Collection<Categoria> categoriaCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "membro")
+    private Collection<Recensione> recensioneCollection;
 
     public Membro() {
     }
@@ -138,21 +147,21 @@ public class Membro implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Categoria> getCategorieCollection() {
-        return categorieCollection;
+    public Collection<Categoria> getCategoriaCollection() {
+        return categoriaCollection;
     }
 
-    public void setCategorieCollection(Collection<Categoria> categorieCollection) {
-        this.categorieCollection = categorieCollection;
+    public void setCategoriaCollection(Collection<Categoria> categoriaCollection) {
+        this.categoriaCollection = categoriaCollection;
     }
 
     @XmlTransient
-    public Collection<Recensione> getRecensioniCollection() {
-        return recensioniCollection;
+    public Collection<Recensione> getRecensioneCollection() {
+        return recensioneCollection;
     }
 
-    public void setRecensioniCollection(Collection<Recensione> recensioniCollection) {
-        this.recensioniCollection = recensioniCollection;
+    public void setRecensioneCollection(Collection<Recensione> recensioneCollection) {
+        this.recensioneCollection = recensioneCollection;
     }
 
     @Override
@@ -177,7 +186,7 @@ public class Membro implements Serializable {
 
     @Override
     public String toString() {
-        return "Mapping.Membri[ idMembro=" + idMembro + " ]";
+        return "Mapping.Membro[ idMembro=" + idMembro + " ]";
     }
     
 }

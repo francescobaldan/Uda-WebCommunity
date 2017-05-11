@@ -13,10 +13,11 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author FSEVERI\sbrizza3331
+ * @author Sprizzetto
  */
 @Embeddable
 public class RecensionePK implements Serializable {
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "IdMembro")
@@ -76,7 +77,7 @@ public class RecensionePK implements Serializable {
 
     @Override
     public String toString() {
-        return "Mapping.RecensioniPK[ idMembro=" + idMembro + ", idEvento=" + idEvento + " ]";
+        return "Mapping.RecensionePK[ idMembro=" + idMembro + ", idEvento=" + idEvento + " ]";
     }
     
 }

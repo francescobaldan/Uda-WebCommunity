@@ -6,7 +6,6 @@
 package Mapping;
 
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -33,12 +32,19 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author FSEVERI\sbrizza3331
+ * @author Sprizzetto
  */
 @Entity
 @Table(name = "EVENTI")
 @XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Evento.findAll", query = "SELECT e FROM Evento e")
+    , @NamedQuery(name = "Evento.findByIdEvento", query = "SELECT e FROM Evento e WHERE e.idEvento = :idEvento")
+    , @NamedQuery(name = "Evento.findByTitolo", query = "SELECT e FROM Evento e WHERE e.titolo = :titolo")
+    , @NamedQuery(name = "Evento.findByLuogo", query = "SELECT e FROM Evento e WHERE e.luogo = :luogo")
+    , @NamedQuery(name = "Evento.findByData", query = "SELECT e FROM Evento e WHERE e.data = :data")})
 public class Evento implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -64,12 +70,12 @@ public class Evento implements Serializable {
         @JoinColumn(name = "IdEvento", referencedColumnName = "IdEvento")}, inverseJoinColumns = {
         @JoinColumn(name = "IdArtista", referencedColumnName = "IdArtista")})
     @ManyToMany
-    private Collection<Artista> artistiCollection;
+    private Collection<Artista> artistaCollection;
     @JoinColumn(name = "Categoria", referencedColumnName = "IdCategoria")
     @ManyToOne(optional = false)
     private Categoria categoria;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "eventi")
-    private Collection<Recensione> recensioniCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "evento")
+    private Collection<Recensione> recensioneCollection;
 
     public Evento() {
     }
@@ -78,12 +84,12 @@ public class Evento implements Serializable {
         this.idEvento = idEvento;
     }
 
-    public Evento(Integer idEvento, String titolo, String luogo, Date data, Categoria categoria) {
+    public Evento(Integer idEvento, String titolo, String luogo, Date data, Categoria cat) {
         this.idEvento = idEvento;
         this.titolo = titolo;
         this.luogo = luogo;
         this.data = data;
-        this.categoria=categoria;
+        this.categoria=cat;
     }
 
     public Integer getIdEvento() {
@@ -119,12 +125,12 @@ public class Evento implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Artista> getArtistiCollection() {
-        return artistiCollection;
+    public Collection<Artista> getArtistaCollection() {
+        return artistaCollection;
     }
 
-    public void setArtistiCollection(Collection<Artista> artistiCollection) {
-        this.artistiCollection = artistiCollection;
+    public void setArtistaCollection(Collection<Artista> artistaCollection) {
+        this.artistaCollection = artistaCollection;
     }
 
     public Categoria getCategoria() {
@@ -136,12 +142,12 @@ public class Evento implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Recensione> getRecensioniCollection() {
-        return recensioniCollection;
+    public Collection<Recensione> getRecensioneCollection() {
+        return recensioneCollection;
     }
 
-    public void setRecensioniCollection(Collection<Recensione> recensioniCollection) {
-        this.recensioniCollection = recensioniCollection;
+    public void setRecensioneCollection(Collection<Recensione> recensioneCollection) {
+        this.recensioneCollection = recensioneCollection;
     }
 
     @Override
@@ -166,7 +172,7 @@ public class Evento implements Serializable {
 
     @Override
     public String toString() {
-        return "Mapping.Eventi[ idEvento=" + idEvento + " ]";
+        return "Mapping.Evento[ idEvento=" + idEvento + " ]";
     }
     
 }

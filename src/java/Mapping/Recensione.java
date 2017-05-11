@@ -21,15 +21,22 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author FSEVERI\sbrizza3331
+ * @author Sprizzetto
  */
 @Entity
 @Table(name = "RECENSIONI")
 @XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Recensione.findAll", query = "SELECT r FROM Recensione r")
+    , @NamedQuery(name = "Recensione.findByIdMembro", query = "SELECT r FROM Recensione r WHERE r.recensionePK.idMembro = :idMembro")
+    , @NamedQuery(name = "Recensione.findByIdEvento", query = "SELECT r FROM Recensione r WHERE r.recensionePK.idEvento = :idEvento")
+    , @NamedQuery(name = "Recensione.findByCommento", query = "SELECT r FROM Recensione r WHERE r.commento = :commento")
+    , @NamedQuery(name = "Recensione.findByVoto", query = "SELECT r FROM Recensione r WHERE r.voto = :voto")})
 public class Recensione implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @EmbeddedId
-    protected RecensionePK recensioniPK;
+    protected RecensionePK recensionePK;
     @Size(max = 200)
     @Column(name = "Commento")
     private String commento;
@@ -39,39 +46,39 @@ public class Recensione implements Serializable {
     private int voto;
     @JoinColumn(name = "IdMembro", referencedColumnName = "IdMembro", insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private Membro membri;
+    private Membro membro;
     @JoinColumn(name = "IdEvento", referencedColumnName = "IdEvento", insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private Evento eventi;
+    private Evento evento;
 
     public Recensione() {
     }
 
-    public Recensione(RecensionePK recensioniPK) {
-        this.recensioniPK = recensioniPK;
+    public Recensione(RecensionePK recensionePK) {
+        this.recensionePK = recensionePK;
     }
 
-    public Recensione(RecensionePK recensioniPK, int voto) {
-        this.recensioniPK = recensioniPK;
+    public Recensione(RecensionePK recensionePK, int voto) {
+        this.recensionePK = recensionePK;
         this.voto = voto;
     }
 
     public Recensione(int idMembro, int idEvento) {
-        this.recensioniPK = new RecensionePK(idMembro, idEvento);
+        this.recensionePK = new RecensionePK(idMembro, idEvento);
     }
     
     public Recensione(int idMembro, int idEvento, String commento, int voto) {
-        this.recensioniPK = new RecensionePK(idMembro, idEvento);
+        this.recensionePK = new RecensionePK(idMembro, idEvento);
         this.commento=commento;
-        this.voto=voto;
+        this.voto = voto;
     }
 
-    public RecensionePK getRecensioniPK() {
-        return recensioniPK;
+    public RecensionePK getRecensionePK() {
+        return recensionePK;
     }
 
-    public void setRecensioniPK(RecensionePK recensioniPK) {
-        this.recensioniPK = recensioniPK;
+    public void setRecensionePK(RecensionePK recensionePK) {
+        this.recensionePK = recensionePK;
     }
 
     public String getCommento() {
@@ -90,26 +97,26 @@ public class Recensione implements Serializable {
         this.voto = voto;
     }
 
-    public Membro getMembri() {
-        return membri;
+    public Membro getMembro() {
+        return membro;
     }
 
-    public void setMembri(Membro membri) {
-        this.membri = membri;
+    public void setMembro(Membro membro) {
+        this.membro = membro;
     }
 
-    public Evento getEventi() {
-        return eventi;
+    public Evento getEvento() {
+        return evento;
     }
 
-    public void setEventi(Evento eventi) {
-        this.eventi = eventi;
+    public void setEvento(Evento evento) {
+        this.evento = evento;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (recensioniPK != null ? recensioniPK.hashCode() : 0);
+        hash += (recensionePK != null ? recensionePK.hashCode() : 0);
         return hash;
     }
 
@@ -120,7 +127,7 @@ public class Recensione implements Serializable {
             return false;
         }
         Recensione other = (Recensione) object;
-        if ((this.recensioniPK == null && other.recensioniPK != null) || (this.recensioniPK != null && !this.recensioniPK.equals(other.recensioniPK))) {
+        if ((this.recensionePK == null && other.recensionePK != null) || (this.recensionePK != null && !this.recensionePK.equals(other.recensionePK))) {
             return false;
         }
         return true;
@@ -128,7 +135,7 @@ public class Recensione implements Serializable {
 
     @Override
     public String toString() {
-        return "Mapping.Recensioni[ recensioniPK=" + recensioniPK + " ]";
+        return "Mapping.Recensione[ recensionePK=" + recensionePK + " ]";
     }
     
 }

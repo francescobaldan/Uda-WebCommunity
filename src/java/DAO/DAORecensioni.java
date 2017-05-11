@@ -6,6 +6,7 @@
 package DAO;
 
 import Mapping.Recensione;
+import Mapping.RecensionePK;
 import java.util.Calendar;
 import java.util.List;
 import org.hibernate.HibernateException;
@@ -38,6 +39,30 @@ public class DAORecensioni {
             session.close();
         }
         return idRecensione;
+    }
+    
+    public void deleteRecensione(int idM, int idE){
+        Session session =sessionFactory.openSession();
+        Transaction tx=null;
+        List<Recensione> listaR=null;
+        RecensionePK key= new RecensionePK(idM, idE);
+        try{
+            tx=session.beginTransaction();
+            listaR=session.createQuery("From Recensione").list();
+            for(int i=0; i<listaR.size(); i++){
+                Recensione temp=listaR.get(i);
+                if(temp.getRecensionePK().equals(key)==true){
+                    session.delete(temp);
+                }
+            }
+            tx.commit();    
+        }catch(HibernateException e){
+            if (tx!=null) tx.rollback();
+            e.printStackTrace();
+        }finally{
+            session.close();
+        }
+        return ;
     }
     
     public List<Recensione> showRecensioni(){

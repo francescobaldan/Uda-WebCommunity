@@ -30,8 +30,8 @@ public class DAOCategorie {
 
         try{
             tx=session.beginTransaction();
-            Categoria event=new Categoria(idCategoria, nome, descrizione);
-            idCat=(Integer) session.save(event);
+            Categoria cat=new Categoria(idCategoria, nome, descrizione);
+            idCat=(Integer) session.save(cat);
             tx.commit();    
         }catch(HibernateException e){
             if (tx!=null) tx.rollback();
@@ -64,10 +64,17 @@ public class DAOCategorie {
     public Categoria cercaCategoria(int idC){
         Session session =sessionFactory.openSession();
         Transaction tx=null;
+        List<Categoria> listaC=null;
         Categoria cat=null;
         try{
             tx=session.beginTransaction();
-            cat=(Categoria) session.createQuery("From Categoria Where idCategoria="+idC);
+            listaC=session.createQuery("From Categoria").list();
+            for(int i=0; i<listaC.size(); i++){
+                Categoria temp=listaC.get(i);
+                if(temp.getIdCategoria().equals(idC)==true){
+                    return temp;
+                }
+            }
             tx.commit();
         }catch(HibernateException e){
             if (tx!=null) tx.rollback();
@@ -81,10 +88,17 @@ public class DAOCategorie {
         public Categoria cercaCategoria(String nome){
         Session session =sessionFactory.openSession();
         Transaction tx=null;
+        List<Categoria> listaC=null;
         Categoria cat=null;
         try{
             tx=session.beginTransaction();
-            cat=(Categoria) session.createQuery("From Categoria Where nome="+nome);
+            listaC=session.createQuery("From Categoria").list();
+            for(int i=0; i<listaC.size(); i++){
+                Categoria temp=listaC.get(i);
+                if(temp.getNome().equals(nome)==true){
+                    return temp;
+                }
+            }
             tx.commit();
         }catch(HibernateException e){
             if (tx!=null) tx.rollback();

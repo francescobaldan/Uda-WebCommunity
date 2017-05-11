@@ -24,12 +24,17 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author FSEVERI\sbrizza3331
+ * @author Sprizzetto
  */
 @Entity
 @Table(name = "ARTISTI")
 @XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Artista.findAll", query = "SELECT a FROM Artista a")
+    , @NamedQuery(name = "Artista.findByIdArtista", query = "SELECT a FROM Artista a WHERE a.idArtista = :idArtista")
+    , @NamedQuery(name = "Artista.findByNome", query = "SELECT a FROM Artista a WHERE a.nome = :nome")})
 public class Artista implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,8 +46,8 @@ public class Artista implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "Nome")
     private String nome;
-    @ManyToMany(mappedBy = "artistiCollection")
-    private Collection<Evento> eventiCollection;
+    @ManyToMany(mappedBy = "artistaCollection")
+    private Collection<Evento> eventoCollection;
 
     public Artista() {
     }
@@ -73,12 +78,12 @@ public class Artista implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Evento> getEventiCollection() {
-        return eventiCollection;
+    public Collection<Evento> getEventoCollection() {
+        return eventoCollection;
     }
 
-    public void setEventiCollection(Collection<Evento> eventiCollection) {
-        this.eventiCollection = eventiCollection;
+    public void setEventoCollection(Collection<Evento> eventoCollection) {
+        this.eventoCollection = eventoCollection;
     }
 
     @Override
@@ -103,7 +108,7 @@ public class Artista implements Serializable {
 
     @Override
     public String toString() {
-        return "Mapping.Artisti[ idArtista=" + idArtista + " ]";
+        return "Mapping.Artista[ idArtista=" + idArtista + " ]";
     }
     
 }

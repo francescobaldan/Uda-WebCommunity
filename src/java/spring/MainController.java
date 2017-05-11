@@ -130,13 +130,27 @@ public class MainController
         
         Date d =null;
         try{
-            DateFormat df = new SimpleDateFormat ("yyyy/MM/gg");
+            DateFormat df = new SimpleDateFormat ("yyyy/MM/dd");
             df.setLenient (false);
             d = df.parse (data);
         }catch(ParseException e){ }
-        List eventi=daoe.showEventi();
+        List<Evento> eventi=daoe.showEventi();
         Categoria cat=daoc.cercaCategoria(categoria);
         daoe.addEvento(eventi.size(), titolo, luogo, d, cat);
+        eventi=daoe.showEventi();
+        map.put("lista", eventi);
+        
+        return "index";
+    }
+    
+    @RequestMapping(value = "/deleteEvento", method = RequestMethod.GET)
+    public String deleteEvento(ModelMap map, @RequestParam(value="idE") int idE)
+    {
+        DAOEventi daoe = new DAOEventi();
+        
+        daoe.deleteEvento(idE);
+        List<Evento> lista = daoe.showEventi();
+        map.put("lista", lista);
         
         return "index";
     }
@@ -144,11 +158,29 @@ public class MainController
     @RequestMapping(value = "/addRecensione", method = RequestMethod.GET)
     public String addRecensione(ModelMap map, @RequestParam(value="idMembro") int idMembro, @RequestParam(value="idEvento") int idEvento, @RequestParam(value="commento") String commento, @RequestParam(value="voto") int voto)
     {
-        DAORecensioni dao=new DAORecensioni();
+        DAORecensioni daor=new DAORecensioni();
+        DAOEventi daoe = new DAOEventi();
         
-        dao.addRecensione(idMembro, idEvento, commento, voto);
+        daor.addRecensione(idMembro, idEvento, commento, voto);
+        List<Evento> lista = daoe.showEventi();
+        map.put("lista", lista);
         
         return "index";
     }
+    
+    @RequestMapping(value = "/deleteRecensione", method = RequestMethod.GET)
+    public String deleteRecensione(ModelMap map, @RequestParam(value="idM") int idM, @RequestParam(value="idE") int idE)
+    {
+        DAORecensioni daor = new DAORecensioni();
+        DAOEventi daoe = new DAOEventi();
+        
+        daor.deleteRecensione(idM, idE);
+        List<Evento> lista = daoe.showEventi();
+        map.put("lista", lista);
+        
+        return "index";
+    }
+    
+    
     
 }

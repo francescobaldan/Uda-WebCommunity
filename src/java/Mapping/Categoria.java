@@ -26,12 +26,18 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author FSEVERI\sbrizza3331
+ * @author Sprizzetto
  */
 @Entity
 @Table(name = "CATEGORIE")
 @XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Categoria.findAll", query = "SELECT c FROM Categoria c")
+    , @NamedQuery(name = "Categoria.findByIdCategoria", query = "SELECT c FROM Categoria c WHERE c.idCategoria = :idCategoria")
+    , @NamedQuery(name = "Categoria.findByNome", query = "SELECT c FROM Categoria c WHERE c.nome = :nome")
+    , @NamedQuery(name = "Categoria.findByDescrizione", query = "SELECT c FROM Categoria c WHERE c.descrizione = :descrizione")})
 public class Categoria implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,10 +54,10 @@ public class Categoria implements Serializable {
     @Size(min = 1, max = 150)
     @Column(name = "Descrizione")
     private String descrizione;
-    @ManyToMany(mappedBy = "categorieCollection")
-    private Collection<Membro> membriCollection;
+    @ManyToMany(mappedBy = "categoriaCollection")
+    private Collection<Membro> membroCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoria")
-    private Collection<Evento> eventiCollection;
+    private Collection<Evento> eventoCollection;
 
     public Categoria() {
     }
@@ -91,21 +97,21 @@ public class Categoria implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Membro> getMembriCollection() {
-        return membriCollection;
+    public Collection<Membro> getMembroCollection() {
+        return membroCollection;
     }
 
-    public void setMembriCollection(Collection<Membro> membriCollection) {
-        this.membriCollection = membriCollection;
+    public void setMembroCollection(Collection<Membro> membroCollection) {
+        this.membroCollection = membroCollection;
     }
 
     @XmlTransient
-    public Collection<Evento> getEventiCollection() {
-        return eventiCollection;
+    public Collection<Evento> getEventoCollection() {
+        return eventoCollection;
     }
 
-    public void setEventiCollection(Collection<Evento> eventiCollection) {
-        this.eventiCollection = eventiCollection;
+    public void setEventoCollection(Collection<Evento> eventoCollection) {
+        this.eventoCollection = eventoCollection;
     }
 
     @Override
@@ -130,7 +136,7 @@ public class Categoria implements Serializable {
 
     @Override
     public String toString() {
-        return "Mapping.Categorie[ idCategoria=" + idCategoria + " ]";
+        return "Mapping.Categoria[ idCategoria=" + idCategoria + " ]";
     }
     
 }

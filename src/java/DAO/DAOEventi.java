@@ -42,6 +42,29 @@ public class DAOEventi {
         }
         return idEvento;
     }
+    
+    public void deleteEvento(int idE){
+        Session session =sessionFactory.openSession();
+        Transaction tx=null;
+        List<Evento> listaE=null;
+        try{
+            tx=session.beginTransaction();
+            listaE=session.createQuery("From Evento").list();
+            for(int i=0; i<listaE.size(); i++){
+                Evento temp=listaE.get(i);
+                if(temp.getIdEvento().equals(idE)==true){
+                    session.delete(temp);
+                }
+            }
+            tx.commit();    
+        }catch(HibernateException e){
+            if (tx!=null) tx.rollback();
+            e.printStackTrace();
+        }finally{
+            session.close();
+        }
+        return ;
+    }
         
         
     public List<Evento> showEventi(){
