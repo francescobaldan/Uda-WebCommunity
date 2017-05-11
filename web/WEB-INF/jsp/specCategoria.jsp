@@ -2,35 +2,6 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!--https://www.tutorialspoint.com/jsp/jstl_format_formatdate_tag.htm-->
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!--<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Categoria</title>
-    </head>
-    <body>
-        <span>${categoria.nome}</span><br>
-        <span>${categoria.descrizione}</span><br>
-        <ul>
-            <c:forEach items="${eventiCategoria}" var="e">
-                <li>
-                    <span>${e.idEvento}</span><br>
-                    <span>${e.titolo}</span><br>
-                    <span>${e.luogo}</span><br>
-                    <span><fmt:formatDate pattern = "dd-MM-yyyy" value = "${e.data}" /></span><br>
-                </li>
-            </c:forEach>
-        </ul>
-        <div>
-            <form method="get" action="<c:url value="./filtroEventi"/>">
-                <input type="hidden" name="idCat" value="${idCat}">
-                <input type="text" name="luogo" id="luogo">
-                <label for="luogo">Specifica luogo</label>
-                <input type="submit">
-            </form>
-        </div>
-    </body>
-</html> -->
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
@@ -84,9 +55,9 @@
               
               <div class="mdl-card__title">
                 <h3>${categoria.nome}</h3>
-                <div class="vai-a-capo">
-                  <span>${categoria.descrizione}</span>
-                </div>
+              </div>
+              <div class="mdl-card__supporting-text" id="subtitle">
+                <span>${categoria.descrizione}</span>
               </div>
               <div class="mdl-menu__item--full-bleed-divider"></div>
               <div class="mdl-card__supporting-text">
@@ -97,10 +68,25 @@
                     
                     <li class="mdl-list__item mdl-list__item--three-line">
                       <span class="mdl-list__item-primary-content">
-                        <span class="mdl-list__item-icon">${e.idEvento}</span>
+                        <i class="material-icons mdl-list__item-avatar mdl-color--primary">
+                          <c:if test="${e.getCategoria().getIdCategoria() == 1}">
+                            music_note
+                          </c:if>
+                          <c:if test="${e.getCategoria().getIdCategoria() == 2}">
+                            local_library
+                          </c:if>
+                          <c:if test="${e.getCategoria().getIdCategoria() == 3}">
+                            directions_bike
+                          </c:if>
+                          <c:if test="${e.getCategoria().getIdCategoria() == 4}">
+                            movie
+                          </c:if>
+                        </i>
                         <span>${e.titolo}</span>
-                        <span class="mdl-list__item-text-body">${e.luogo}
-                          <fmt:formatDate pattern = "dd-MM-yyyy" value = "${e.data}" /></span>
+                        <span class="mdl-list__item-text-body">
+                          ${e.luogo}<br>
+                          <fmt:formatDate pattern = "dd-MM-yyyy" value = "${e.data}" />
+                        </span>
                       </span>
                     </li>
                     
