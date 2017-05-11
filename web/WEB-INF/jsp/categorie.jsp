@@ -9,7 +9,7 @@
     <title>Eventi</title>
     <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-amber.min.css">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-orange.min.css">
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
   </head>
 
@@ -62,13 +62,33 @@
                   <c:forEach items="${listaCat}" var="e">
                     
                     <li class="mdl-list__item mdl-list__item--two-line">
+                      <c:if test="${e.getIdCategoria() == 1}">
+                        <i class="material-icons mdl-list__item-avatar evento-musica">
+                          music_note
+                        </i>
+                      </c:if>
+                      <c:if test="${e.getIdCategoria() == 2}">
+                        <i class="material-icons mdl-list__item-avatar evento-teatro">
+                          local_library
+                        </i>
+                      </c:if>
+                      <c:if test="${e.getIdCategoria() == 3}">
+                        <i class="material-icons mdl-list__item-avatar evento-sport">
+                          directions_bike
+                        </i>
+                      </c:if>
+                      <c:if test="${e.getIdCategoria() == 4}">
+                        <i class="material-icons mdl-list__item-avatar evento-cinema">
+                          movie
+                        </i>
+                      </c:if>
                       <span class="mdl-list__item-primary-content">
                         <span>${e.nome}</span>
                         <span class="mdl-list__item-sub-title">${e.descrizione}</span>
                       </span>
                       <span class="mdl-list__item-secondary-content">
-                        <a class="mdl-list__item-secondary-action" href="#">
-                          <i class="material-icons">star</i>
+                        <a class="mdl-list__item-secondary-action" href="<c:url value="/categoria?idC=${e.idCategoria}" />">
+                          <i class="material-icons">arrow_forward</i>
                         </a>
                       </span>
                     </li>

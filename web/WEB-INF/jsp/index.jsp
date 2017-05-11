@@ -9,7 +9,7 @@
     <title>Eventi</title>
     <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-amber.min.css">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-orange.min.css">
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
   </head>
 
@@ -42,17 +42,21 @@
                   <i class="material-icons mdl-list__item-icon">people</i>
                 Artisti</span>
             </a>
-               <a class="mdl-navigation__link" href="<c:url value="/forwardAddEvento" />">
-               <span class="mdl-list__item-primary-content">
-                  <i class="material-icons mdl-list__item-icon">format_align_justify</i>
-                Aggiungi evento</span>
-            </a>
           </nav>
         </div>
         <main class="mdl-layout__content">
           <div class="page-content">
                     
             <div class="spacer mdl-color--primary mdl-shadow--2dp"></div>
+            
+            <div class="add-event-container">
+              <a class="mdl-navigation__link" id="add-event-link" href="<c:url value="/forwardAddEvento" />">
+                <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" id="add-event-fab">
+                  <i class="material-icons">add</i>
+                </button>
+                <div class="mdl-tooltip mdl-tooltip--bottom" for="add-event-fab">Aggiungi evento</div>
+              </a>
+            </div>
                     
             <div class="mdl-card mdl-shadow--2dp main-container">
               
@@ -62,10 +66,9 @@
               <div class="mdl-menu__item--full-bleed-divider"></div>
               <div class="mdl-card__supporting-text">
                 
-                <div class="mdl-list">
+                <ul class="mdl-list">
                   
-                   <c:forEach items="${lista}" var="e">
-                      <div class="mdl-list__item">
+                  <div class="mdl-list__item">
                         <span>${e.titolo}</span><br>
                         <span>${e.luogo}</span><br>
                         <span><fmt:formatDate pattern = "dd-MM-yyyy" value = "${e.data}" /></span><br><br>
@@ -73,9 +76,47 @@
                         <a href="<c:url value="/evento?idE=${e.idEvento}" />">Recensioni</a>
                         <a href="<c:url value="/deleteEvento?idE=${e.idEvento}" />">Elimina</a>
                       </div>
-                    </c:forEach>
                   
-                </div>
+                  <c:forEach items="${lista}" var="e">
+                    <li class="mdl-list__item mdl-list__item--three-line">
+                      <span class="mdl-list__item-primary-content">
+                        <c:if test="${e.getCategoria().getIdCategoria() == 1}">
+                          <i class="material-icons mdl-list__item-avatar evento-musica" id="${e.idEvento}">
+                            music_note
+                          </i>
+                        </c:if>
+                        <c:if test="${e.getCategoria().getIdCategoria() == 2}">
+                          <i class="material-icons mdl-list__item-avatar evento-teatro" id="${e.idEvento}">
+                            local_library
+                          </i>
+                        </c:if>
+                        <c:if test="${e.getCategoria().getIdCategoria() == 3}">
+                          <i class="material-icons mdl-list__item-avatar evento-sport" id="${e.idEvento}">
+                            directions_bike
+                          </i>
+                        </c:if>
+                        <c:if test="${e.getCategoria().getIdCategoria() == 4}">
+                          <i class="material-icons mdl-list__item-avatar evento-cinema" id="${e.idEvento}">
+                            movie
+                          </i>
+                        </c:if>
+                        <div class="mdl-tooltip mdl-tooltip--left" for="${e.idEvento}">${e.categoria.nome}</div>
+                        <span>${e.titolo}</span>
+                        <span class="mdl-list__item-text-body">
+                          ${e.luogo}<br>
+                          <fmt:formatDate pattern = "dd-MM-yyyy" value = "${e.data}" />
+                        </span>
+                      </span>
+                      <span class="mdl-list__item-secondary-content">
+                        <div class="mdl-list__item-secondary-action">
+                          <a href="<c:url value="/evento?idE=${e.idEvento}" />"><i class="material-icons">star</i></a>
+                        </div>
+                      </span>
+                    </li>
+                  </c:forEach>
+                    
+                  
+                </ul>
                 
               </div>
             </div>

@@ -1,5 +1,5 @@
 html, body {
-  background-color: #F5F5F5;
+  background-color: #EEEEEE;
 }
 
 /* Fix drawer icon on mobile mode*/
@@ -82,4 +82,43 @@ header {
   padding-top: 8px!important;
   text-align: center!important;
   font-size: 24px!important;
+  margin-right: 16px;
+}
+
+.material-icons.mdl-list__item-avatar.evento-musica {
+  background-color: rgba(244,67,54 ,1)!important;
+}
+
+.material-icons.mdl-list__item-avatar.evento-teatro {
+  background-color: rgba(255,193,7 ,1)!important;
+}
+
+.material-icons.mdl-list__item-avatar.evento-sport {
+  background-color: rgba(76,175,80 ,1)!important;
+}
+
+.material-icons.mdl-list__item-avatar.evento-cinema {
+  background-color: rgba(63,81,181 ,1)!important;
+}
+
+.add-event-container {
+  position: absolute;
+  width: 15%;
+  right: 0;
+  text-align: center;
+}
+
+#add-event-link {
+  z-index: 100;
+  opacity: 1;
+  padding-left: 0!important;
+}
+
+#add-event-fab {
+  top: -28px!important;
+  background-color: rgba(255,145,0 ,1)!important;
+}
+
+.mdl-list__item-secondary-action i {
+  color: rgba(0, 0, 0, 0.54)!important;
 }
