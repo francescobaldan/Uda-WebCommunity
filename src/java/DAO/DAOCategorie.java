@@ -115,7 +115,7 @@ public class DAOCategorie {
         List<Evento> listaE=null;
         try{
             tx=session.beginTransaction();
-            listaE=session.createQuery("Select eventiCollection From Categoria Where idCategoria="+idC+" Order by data").list();
+            listaE=session.createQuery("Select eventoCollection From Categoria Where idCategoria="+idC+" Order by data").list();
             tx.commit();
         }catch(HibernateException e){
             if (tx!=null) tx.rollback();
@@ -134,7 +134,7 @@ public class DAOCategorie {
         ArrayList<Evento> listaE=new ArrayList<Evento>();
         try{
             tx=session.beginTransaction();
-            listaProv=session.createQuery("Select eventiCollection From Categoria Where idCategoria="+idC+" Order by data").list();
+            listaProv=session.createQuery("Select eventoCollection From Categoria Where idCategoria="+idC+" Order by data").list();
             for(int i=0; i<listaProv.size(); i++){
                 Evento temp=listaProv.get(i);
                 if(temp.getLuogo().equals(luogo)==true){
