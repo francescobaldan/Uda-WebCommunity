@@ -42,6 +42,11 @@
                   <i class="material-icons mdl-list__item-icon">people</i>
                 Artisti</span>
             </a>
+               <a class="mdl-navigation__link" href="<c:url value="/forwardAddEvento" />">
+               <span class="mdl-list__item-primary-content">
+                  <i class="material-icons mdl-list__item-icon">format_align_justify</i>
+                Aggiungi evento</span>
+            </a>
           </nav>
         </div>
         <main class="mdl-layout__content">

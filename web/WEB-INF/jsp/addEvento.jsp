@@ -10,9 +10,14 @@
     <body>
         <form method="get" action="<c:url value="./addEvento"/>">
             <input type="text" name="titolo" id="titolo">
+            <label for="titolo">Titolo</label>
             <input type="text" name="luogo" id="luogo">
+            <label for="titolo">Luogo</label>
             <input type="text" name="data" id="data">
+            <label for="titolo">Data yyyy/mm/dd</label>
             <input type="text" name="categoria" id="categoria">
+            <label for="titolo">Categoria</label>
+            <input type="submit" name="cazzo" >
         </form>
     </body>
 </html>

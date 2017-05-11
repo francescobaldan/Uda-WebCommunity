@@ -116,6 +116,12 @@ public class MainController
         return "recensioniEvento";
     }
     
+    @RequestMapping(value = "/forwardAddEvento", method = RequestMethod.GET)
+    public String forwardAddEvento(ModelMap map)
+    {
+        return "addEvento";
+    }
+    
     @RequestMapping(value = "/addEvento", method = RequestMethod.GET)
     public String addEvento(ModelMap map, @RequestParam(value="titolo") String titolo, @RequestParam(value="luogo") String luogo, @RequestParam(value="data") String data, @RequestParam(value="categoria") String categoria)
     {
