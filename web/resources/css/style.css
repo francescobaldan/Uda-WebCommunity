@@ -1,5 +1,13 @@
+html, body {
+  background-color: #F5F5F5;
+}
+
 header {
   box-shadow: none!important;
+}
+
+.mdl-navigation__link.active {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .spacer {

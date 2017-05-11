@@ -27,12 +27,12 @@
         <div class="mdl-layout__drawer">
           <span class="mdl-layout-title">Title</span>
           <nav class="mdl-navigation">
-            <a class="mdl-navigation__link active" href="">
+            <a class="mdl-navigation__link" href="">
               <span class="mdl-list__item-primary-content">
                 <i class="material-icons mdl-list__item-icon">home</i>
               Home</span>
             </a>
-            <a class="mdl-navigation__link" href="<c:url value="/categorie" />">
+            <a class="mdl-navigation__link active" href="">
                <span class="mdl-list__item-primary-content">
                   <i class="material-icons mdl-list__item-icon">playlist_add</i>
                 Categorie</span>
@@ -47,23 +47,30 @@
             <div class="mdl-card mdl-shadow--2dp main-container">
               
               <div class="mdl-card__title">
-                <h3>Ultimi eventi</h3>
+                <h3>Categorie</h3>
               </div>
               <div class="mdl-menu__item--full-bleed-divider"></div>
               <div class="mdl-card__supporting-text">
                 
-                <div class="mdl-list">
+                <ul class="mdl-list">
                   
-                   <c:forEach items="${lista}" var="e">
-                      <div class="mdl-list__item">
-                        <span>${e.titolo}</span><br>
-                        <span>${e.luogo}</span><br>
-                        <span><fmt:formatDate pattern = "dd-MM-yyyy" value = "${e.data}" /></span><br><br>
-                        <a href="<c:url value="/categoria?idC=${e.categoria.idCategoria}" />">${e.categoria.nome}</a>
-                      </div>
-                    </c:forEach>
+                  <c:forEach items="${listaCat}" var="e">
+                    
+                    <li class="mdl-list__item mdl-list__item--two-line">
+                      <span class="mdl-list__item-primary-content">
+                        <span>${e.nome}</span>
+                        <span class="mdl-list__item-sub-title">${e.descrizione}</span>
+                      </span>
+                      <span class="mdl-list__item-secondary-content">
+                        <a class="mdl-list__item-secondary-action" href="#">
+                          <i class="material-icons">star</i>
+                        </a>
+                      </span>
+                    </li>
+                    
+                  </c:forEach>
                   
-                </div>
+                </ul>
                 
               </div>
             </div>
