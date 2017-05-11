@@ -4,7 +4,7 @@ html, body {
 
 
 
-// Fix drawer icon on mobile mode
+/* Fix drawer icon on mobile mode*/
 
 @media (max-width: 1024px) {
   .mdl-layout__container .mdl-layout .mdl-layout__drawer-button i {
