@@ -9,6 +9,9 @@ import DAO.DAORecensioni;
 import Mapping.Categoria;
 import Mapping.Evento;
 import Mapping.Recensione;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -114,14 +117,20 @@ public class MainController
     }
     
     @RequestMapping(value = "/addEvento", method = RequestMethod.GET)
-    public String addEvento(ModelMap map, @RequestParam(value="titolo") String titolo, @RequestParam(value="luogo") String luogo, @RequestParam(value="data") Date data, @RequestParam(value="categoria") String categoria)
+    public String addEvento(ModelMap map, @RequestParam(value="titolo") String titolo, @RequestParam(value="luogo") String luogo, @RequestParam(value="data") String data, @RequestParam(value="categoria") String categoria)
     {
         DAOEventi daoe = new DAOEventi();
         DAOCategorie daoc = new DAOCategorie();
         
+        Date d =null;
+        try{
+            DateFormat df = new SimpleDateFormat ("yyyy/MM/gg");
+        df.setLenient (false);
+        d = df.parse (data);
+        }catch(ParseException e){ }
         List eventi=daoe.showEventi();
         Categoria cat=daoc.cercaCategoria(categoria);
-        daoe.addEvento(eventi.size(), titolo, luogo, data, cat);
+        daoe.addEvento(eventi.size(), titolo, luogo, d, cat);
         
         return "index";
     }

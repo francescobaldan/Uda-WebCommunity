@@ -9,11 +9,10 @@
     </head>
     <body>
         <form method="get" action="<c:url value="./addEvento"/>">
-            <input type="text" name="id" id="idEvento">
-            <input type="text" name="titolo" id="luogo">
+            <input type="text" name="titolo" id="titolo">
             <input type="text" name="luogo" id="luogo">
-            <input type="text" name="data" id="luogo">
-            <input type="text" name="categoria" id="luogo">
+            <input type="text" name="data" id="data">
+            <input type="text" name="categoria" id="categoria">
         </form>
     </body>
 </html>
