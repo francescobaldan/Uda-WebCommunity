@@ -52,7 +52,7 @@
             <div class="spacer mdl-color--primary mdl-shadow--2dp"></div>
             
             <div class="add-event-container">
-              <a class="mdl-navigation__link" id="add-event-link" href="<c:url value="/forwardAddRecensione?nomeC=${categoria.nome}" />">
+              <a class="mdl-navigation__link" id="add-event-link" href="<c:url value="/forwardAddRecensione?idE=${event.idEvento}" />">
                 <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" id="add-review-fab">
                   <i class="material-icons">add</i>
                 </button>

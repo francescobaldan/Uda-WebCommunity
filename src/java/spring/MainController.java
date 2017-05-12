@@ -105,12 +105,13 @@ public class MainController
     public String recensioniEvento(ModelMap map, @RequestParam(value="idE") int idE)
     {
         DAOEventi dao = new DAOEventi();
+        DAORecensioni daor = new DAORecensioni();
         
         int mediaVoto=dao.votoMedio(idE);
         map.put("mediaVoto", mediaVoto);
         Evento event= dao.showEvento(idE);
         map.put("event", event);
-        List<Recensione> listaRec = dao.showRecensioniEvento(idE);
+        List<Recensione> listaRec = daor.showRecensioniEvento(idE);
         map.put("listaRec", listaRec);
 
         return "recensioniEvento";
@@ -173,11 +174,18 @@ public class MainController
         DAORecensioni daor=new DAORecensioni();
         DAOEventi daoe = new DAOEventi();
         
+        int mediaVoto=daoe.votoMedio(idEvento);
+        map.put("mediaVoto", mediaVoto);
+        Evento event= daoe.showEvento(idEvento);
+        map.put("event", event);
+        List<Recensione> listaRec = daor.showRecensioniEvento(idEvento);
+        map.put("listaRec", listaRec);
+        
         daor.addRecensione(idMembro, idEvento, commento, voto);
         List<Evento> lista = daoe.showEventi();
         map.put("lista", lista);
         
-        return "index";
+        return "recensioniEvento";
     }
     
     @RequestMapping(value = "/deleteRecensione", method = RequestMethod.GET)
@@ -192,4 +200,11 @@ public class MainController
         
         return "index";
     }  
+    
+    @RequestMapping(value = "/forwardAddRecensione", method = RequestMethod.GET)
+    public String forwardAddRecensione(ModelMap map, @RequestParam(value="idE") int idE)
+    {
+        map.put("idE", idE);
+        return "addRecensione";
+    }
 }

@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import Mapping.Evento;
 import Mapping.Recensione;
 import Mapping.RecensionePK;
 import java.util.Calendar;
@@ -22,15 +23,13 @@ public class DAORecensioni {
     
     private final SessionFactory sessionFactory=hibernate.HibernateUtil.getSessionFactory();
     
-    public Integer addRecensione(int idMembro, int idEvento, String commento, int voto){
+    public void addRecensione(int idMembro, int idEvento, String commento, int voto){
         Session session =sessionFactory.openSession();
         Transaction tx=null;
-        Integer idRecensione=null;
-
         try{
             tx=session.beginTransaction();
             Recensione rec=new Recensione(idMembro, idEvento, commento, voto);
-            idRecensione=(Integer) session.save(rec);
+            session.save(rec);
             tx.commit();    
         }catch(HibernateException e){
             if (tx!=null) tx.rollback();
@@ -38,7 +37,7 @@ public class DAORecensioni {
         }finally{
             session.close();
         }
-        return idRecensione;
+        return ;
     }
     
     public void deleteRecensione(int idM, int idE){
@@ -65,24 +64,6 @@ public class DAORecensioni {
         return ;
     }
     
-    public List<Recensione> showRecensioni(int idE){
-        Session session =sessionFactory.openSession();
-        Transaction tx=null;
-        List<Recensione> listaR=null;
-        try{
-            tx=session.beginTransaction();
-            listaR=session.createQuery("Select recensioneCollection From Evento Where idEvento="+idE).list();
-            tx.commit();
-        }catch(HibernateException e){
-            if (tx!=null) tx.rollback();
-            e.printStackTrace();
-        }finally{
-            session.close();
-        }
-        return listaR;
-      
-    }
-    
     public void updateRecensione(int idMembro, int idEvento, String commento, int voto){
         Session session =sessionFactory.openSession();
         Transaction tx=null;
@@ -98,6 +79,25 @@ public class DAORecensioni {
             session.close();
         }
         return ;
+    }
+    
+    public List<Recensione> showRecensioniEvento(int idE){
+        Session session =sessionFactory.openSession();
+        Transaction tx=null;
+        List<Recensione> listaR=null;
+        List<Evento> event=null;
+        try{
+            tx=session.beginTransaction();
+            event=session.createQuery("From Evento Where idEvento="+idE).list();
+            listaR=session.createQuery("From Recensione Where evento="+event.get(0)).list();
+            tx.commit();
+        }catch(HibernateException e){
+            if (tx!=null) tx.rollback();
+            e.printStackTrace();
+        }finally{
+            session.close();
+        }
+        return listaR;
     }
     
 }

@@ -127,7 +127,7 @@ public class DAOEventi {
         List<Recensione> listaR=null;
         try{
             tx=session.beginTransaction();
-            listaR=session.createQuery("Select recensioneCollection From Evento where idEvento="+idE).list();
+            listaR=session.createQuery("Select recensioneCollection From Evento Where idEvento="+idE).list();
             tx.commit();
         }catch(HibernateException e){
             if (tx!=null) tx.rollback();
@@ -147,7 +147,7 @@ public class DAOEventi {
         int votoMedio=0;
         try{
             tx=session.beginTransaction();
-            recensioni=session.createQuery("Select recensioneCollection From Evento where idEvento="+idE).list();
+            recensioni=session.createQuery("Select recensioneCollection From Evento Where idEvento="+idE).list();
             for(int i=0; i<recensioni.size(); i++){
                 rec=recensioni.get(i);
                 somma+=rec.getVoto();
