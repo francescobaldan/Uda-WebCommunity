@@ -73,7 +73,7 @@ public class DAOEventi {
         List<Evento> listaE=null;
         try{
             tx=session.beginTransaction();
-            listaE=session.createQuery("From Evento").list();
+            listaE=session.createQuery("From Evento Order by data").list();
             tx.commit();
         }catch(HibernateException e){
             if (tx!=null) tx.rollback();

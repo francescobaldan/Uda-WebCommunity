@@ -122,6 +122,13 @@ public class MainController
         return "addEvento";
     }
     
+    @RequestMapping(value = "/forwardAddEventoCat", method = RequestMethod.GET)
+    public String forwardAddEvento(ModelMap map, @RequestParam(value="nomeC") String nomeC)
+    {
+        map.put("nomeC", nomeC);
+        return "addEvento";
+    }
+    
     @RequestMapping(value = "/addEvento", method = RequestMethod.GET)
     public String addEvento(ModelMap map, @RequestParam(value="titolo") String titolo, @RequestParam(value="luogo") String luogo, @RequestParam(value="data") String data, @RequestParam(value="categoria") String categoria)
     {
@@ -144,15 +151,20 @@ public class MainController
     }
     
     @RequestMapping(value = "/deleteEvento", method = RequestMethod.GET)
-    public String deleteEvento(ModelMap map, @RequestParam(value="idE") int idE)
+    public String deleteEvento(ModelMap map, @RequestParam(value="idE") int idE, @RequestParam(value="idC") int idC)
     {
         DAOEventi daoe = new DAOEventi();
+        DAOCategorie dao = new DAOCategorie();
         
         daoe.deleteEvento(idE);
-        List<Evento> lista = daoe.showEventi();
-        map.put("lista", lista);
+        List<Categoria> listaCat = dao.showCategorie();
+        List<Evento> eventiCategoria = dao.eventiCategoria(idC);
+        map.put("listaCat", listaCat);
+        map.put("categoria", listaCat.get(idC-1));
+        map.put("eventiCategoria", eventiCategoria);
+        map.put("idCat", idC);
         
-        return "index";
+        return "specCategoria";
     }
     
     @RequestMapping(value = "/addRecensione", method = RequestMethod.GET)

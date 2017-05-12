@@ -1,27 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Aggiungi evento</title>
-    </head>
-    <body>
-        <form method="get" action="<c:url value="./addEvento"/>">
-            <input type="text" name="titolo" id="titolo">
-            <label for="titolo">Titolo</label>
-            <input type="text" name="luogo" id="luogo">
-            <label for="titolo">Luogo</label>
-            <input type="text" name="data" id="data">
-            <label for="titolo">Data yyyy/mm/dd</label>
-            <input type="text" name="categoria" id="categoria">
-            <label for="titolo">Categoria</label>
-            <input type="submit" name="cazzo" >
-        </form>
-    </body>
-</html>
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -84,14 +63,29 @@
             <div class="mdl-card mdl-shadow--2dp main-container">
               
               <div class="mdl-card__title">
-                <h3>Ultimi eventi</h3>
+                <h3>Aggiungi eventi</h3>
               </div>
               <div class="mdl-menu__item--full-bleed-divider"></div>
               <div class="mdl-card__supporting-text">
                 
-                <form action="#">
-                  <input class="mdl-datepicker__input" type="text" id="date-input" value="" />
+                <form method="get" action="<c:url value="./addEvento"/>">
+                    <input class="mdl-textfield__input" type="text" name="titolo" id="titolo">
+                    <label class="" for="titolo">Titolo</label>
+                    <input class="mdl-textfield__input" type="text" name="luogo" id="luogo">
+                    <label class="" for="luogo">Luogo</label>
+                    <input class="mdl-textfield__input" type="text" name="data" id="data">
+                    <label class="" for="data">Data yyyy/mm/dd</label>
+                    <c:if test="${nomeC!=null}">
+                        <input class="mdl-textfield__input" type="text" name="categoria" value="${nomeC}" id="categoria">
+                        <label class="" for="categoria">Categoria</label>
+                    </c:if>
+                    <c:if test="${nomeC==null}">
+                        <input class="mdl-textfield__input" type="text" name="categoria" id="categoria">
+                        <label class="" for="categoria">Categoria</label>
+                    </c:if>
+                    <input type="submit" name="cazzo" >
                 </form>
+                
                 
               </div>
             </div>

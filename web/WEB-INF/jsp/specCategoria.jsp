@@ -50,6 +50,15 @@
           <div class="page-content">
                     
             <div class="spacer mdl-color--primary mdl-shadow--2dp"></div>
+            
+            <div class="add-event-container">
+              <a class="mdl-navigation__link" id="add-event-link" href="<c:url value="/forwardAddEventoCat?nomeC=${categoria.nome}" />">
+                <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" id="add-event-fab">
+                  <i class="material-icons">add</i>
+                </button>
+                <div class="mdl-tooltip mdl-tooltip--bottom" for="add-event-fab">Aggiungi evento</div>
+              </a>
+            </div>
                     
             <div class="mdl-card mdl-shadow--2dp main-container">
               
@@ -86,6 +95,7 @@
                         <span class="mdl-list__item-text-body">
                           ${e.luogo}<br>
                           <fmt:formatDate pattern = "dd-MM-yyyy" value = "${e.data}" />
+                          <a href="<c:url value="/deleteEvento?idE=${e.idEvento}&idC=${idCat}" />">Elimina</a>
                         </span>
                       </span>
                     </li>
