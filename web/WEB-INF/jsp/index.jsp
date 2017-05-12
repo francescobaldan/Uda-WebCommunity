@@ -68,12 +68,7 @@
                 
                 <ul class="mdl-list">
                   
-                  <div class="mdl-list__item">
-                        <span>${e.titolo}</span><br>
-                        <span>${e.luogo}</span><br>
-                        <span><fmt:formatDate pattern = "dd-MM-yyyy" value = "${e.data}" /></span><br><br>
-                        <a href="<c:url value="/categoria?idC=${e.categoria.idCategoria}" />">${e.categoria.nome}</a>
-                      </div>
+                  
                   
                   <c:forEach items="${lista}" var="e">
                     <li class="mdl-list__item mdl-list__item--three-line">
@@ -104,12 +99,12 @@
                           ${e.luogo}<br>
                           <fmt:formatDate pattern = "dd-MM-yyyy" value = "${e.data}" />
                           <a href="<c:url value="/deleteEvento?idE=${e.idEvento}" />">Elimina</a><br>
-                          <a href="<c:url value="/evento?idE=${e.idEvento}" />">Recensioni</a>
                         </span>
                       </span>
                       <span class="mdl-list__item-secondary-content">
                         <div class="mdl-list__item-secondary-action">
                           <a href="<c:url value="/evento?idE=${e.idEvento}" />"><i class="material-icons">star</i></a>
+                          <br>Recensioni
                         </div>
                       </span>
                     </li>
