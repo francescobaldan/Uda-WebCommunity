@@ -111,7 +111,7 @@ public class MainController
         map.put("mediaVoto", mediaVoto);
         Evento event= dao.showEvento(idE);
         map.put("event", event);
-        List<Recensione> listaRec = daor.showRecensioniEvento(idE);
+        List<Recensione> listaRec = dao.showRecensioniEvento(idE);
         map.put("listaRec", listaRec);
 
         return "recensioniEvento";
@@ -178,7 +178,7 @@ public class MainController
         map.put("mediaVoto", mediaVoto);
         Evento event= daoe.showEvento(idEvento);
         map.put("event", event);
-        List<Recensione> listaRec = daor.showRecensioniEvento(idEvento);
+        List<Recensione> listaRec = daoe.showRecensioniEvento(idEvento);
         map.put("listaRec", listaRec);
         
         daor.addRecensione(idMembro, idEvento, commento, voto);
