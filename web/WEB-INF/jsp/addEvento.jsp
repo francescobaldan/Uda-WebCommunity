@@ -12,7 +12,10 @@
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-orange.min.css">
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/moment.min.js" />"></script>
-    <script type="text/javascript" src="<c:url value="/resources/js/material-picker.min.js" />"></script> 
+    <script type="text/javascript" src="<c:url value="/resources/js/material-picker.min.js" />"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/i18n/jquery-ui-i18n.min.js"></script>
   </head>
 
   <body>
@@ -51,7 +54,7 @@
                     
             <div class="spacer mdl-color--primary mdl-shadow--2dp"></div>
                     
-            <div class="mdl-card mdl-shadow--2dp main-container">
+            <div class="mdl-card mdl-shadow--2dp main-container" id="this-card-is-slim">
               
               <div class="mdl-card__title">
                 <h3>Aggiungi eventi</h3>
@@ -60,23 +63,41 @@
               <div class="mdl-card__supporting-text">
                 
                 <form method="get" action="<c:url value="./addEvento"/>">
+                  
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label add-event">
                     <input class="mdl-textfield__input" type="text" name="titolo" id="titolo">
-                    <label class="" for="titolo">Titolo</label>
+                    <label class="mdl-textfield__label" for="titolo">Titolo</label>
+                  </div>
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label add-event">
                     <input class="mdl-textfield__input" type="text" name="luogo" id="luogo">
-                    <label class="" for="luogo">Luogo</label>
+                    <label class="mdl-textfield__label" for="luogo">Luogo</label>
+                  </div>
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label add-event" id="datepicker">
                     <input class="mdl-textfield__input" type="text" name="data" id="data">
-                    <label class="" for="data">Data yyyy/mm/dd</label>
-                    <c:if test="${nomeC!=null}">
-                        <input class="mdl-textfield__input" type="text" name="categoria" value="${nomeC}" id="categoria">
-                        <label class="" for="categoria">Categoria</label>
-                    </c:if>
-                    <c:if test="${nomeC==null}">
-                        <input class="mdl-textfield__input" type="text" name="categoria" id="categoria">
-                        <label class="" for="categoria">Categoria</label>
-                    </c:if>
-                    <input type="submit" name="cazzo" >
+                    <label class="mdl-textfield__label" for="data">Data</label>
+                  </div>
+                  <c:if test="${nomeC!=null}">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label add-event">
+                      <input class="mdl-textfield__input" type="text" name="categoria" value="${nomeC}" id="categoria">
+                      <label class="mdl-textfield__label" for="categoria">Categoria</label>
+                    </div>
+                  </c:if>
+                  <c:if test="${nomeC==null}">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label add-event" id="select-category">
+                      <input class="mdl-textfield__input" type="text" name="categoria" id="categoria">
+                      <label class="mdl-textfield__label" for="categoria">Categoria</label>
+                    </div>
+                      
+                    <ul class="mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect" id="select-category-menu"
+                        for="select-category">
+                      <li class="mdl-menu__item" id="select-musica">Musica</li>
+                      <li class="mdl-menu__item" id="select-teatro">Teatro</li>
+                      <li class="mdl-menu__item" id="select-sport">Sport</li>
+                      <li class="mdl-menu__item" id="select-cinema">Cinema</li>
+                    </ul>
+                  </c:if><br>
+                  <input type="submit" class="mdl-button mdl-js-button mdl-button--primary" id="add-event" value="Aggiungi" >
                 </form>
-                
                 
               </div>
             </div>
@@ -84,10 +105,42 @@
           </div>
         </main>
       </div>
+                
+      <div id="fill-all" class="mdl-js-snackbar mdl-snackbar">
+        <div class="mdl-snackbar__text">Devi riempire tutti i campi!</div>
+      </div>
 
     </body>
 </html>
 
-<style>
-  .mdl-calendar,.mdl-calendar__booking{position:relative;box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);box-sizing:border-box}.mdl-calendar{display:none;flex-direction:column;background-color:#fff;overflow:hidden}.mdl-calendar.is-visible{display:flex}.mdl-calendar__body,.mdl-calendar__bookings,.mdl-calendar__footer,.mdl-calendar__header{padding:18px}.mdl-calendar__button{cursor:pointer;color:#616161;font-size:1em;line-height:1;padding:0;margin:0;background:0 0;border:none}.mdl-calendar__header{color:#fff;background-color:#2196F3}.mdl-calendar__body .mdl-calendar__body-month,.mdl-calendar__header-year{display:flex;margin:0}.mdl-calendar__header-year{color:#BBDEFB}.mdl-calendar__body .mdl-calendar__body-month-title,.mdl-calendar__header .mdl-calendar__year{flex:1;text-align:center;padding:0;margin:0}.mdl-calendar__header .mdl-calendar__button{color:#E0E0E0}.mdl-calendar__header-fulldate{font-size:2em;padding:0;margin:20px 0 0}.mdl-calendar__content{position:relative;box-sizing:border-box}.mdl-calendar__booking{display:none;overflow-y:scroll;width:100%;height:400px;background-color:#fff}.mdl-calendar__booking.is-visible{display:block}.mdl-calendar__booking-header{padding:1.5em}.mdl-calendar__booking-header-title{display:inline-block;margin:0;padding:0;font-size:1.3em}.mdl-calendar__booking-grid{position:absolute;left:18px;right:18px}.booking-grid__item{display:block;cursor:pointer;height:29px;border-top:1px solid #E0E0E0}.booking-grid__item.booking-grid__item--hour{border-color:#64B5F6}.booking-grid__item-hour{float:left;color:#9E9E9E;line-height:29px;width:50px}.booking-grid__item-selectable{margin:0 22px 0 54px;height:29px}.booking-grid__item-selectable:hover{background-color:#F5F5F5}.mdl-calendar__booking-events{position:relative}.mdl-calendar__booking-event{position:absolute;left:54px;right:22px;padding:.4em;color:#1976D2;background-color:#BBDEFB;border:1px solid #64B5F6;box-sizing:border-box}.mdl-calendar__booking-event.event--travel{color:#7B1FA2;background-color:#E1BEE7;border-color:#BA68C8}.mdl-calendar__body .mdl-calendar__body-month{font-weight:500}.mdl-calendar__body-month,.mdl-calendar__week-labels{margin-bottom:6px}.mdl-calendar__week{display:flex;justify-content:space-between}.mdl-calendar__week-item{flex:1;display:block;font-weight:500;text-align:center;width:42px;height:42px;line-height:42px;padding:0;margin:2px 1px;border-radius:50%;background:0 0;border:none;box-sizing:border-box}.mdl-calendar__week-item,.mdl-calendar__week-item:focus,.mdl-calendar__week-item:hover{outline:0}.mdl-calendar__week-item.is-selected,.mdl-calendar__week-item:hover:not(.is-disabled):not(.mdl-calendar__week-label){cursor:pointer;color:#fff;background-color:#2196F3}.mdl-calendar__week-item.is-disabled,.mdl-calendar__week-item.mdl-calendar__week-label{color:#BDBDBD}.mdl-calendar__week-item.mdl-calendar__week-label{font-weight:400}.mdl-calendar__week-item.mdl-calendar__day-today{color:#2196F3;background-color:#EEE}.mdl-calendar__footer{text-align:right}.mdl-calendar__month--next,.mdl-calendar__month--prev,.mdl-calendar__year--next,.mdl-calendar__year--prev{display:none}.mdl-calendar__month--next.is-visible,.mdl-calendar__month--prev.is-visible,.mdl-calendar__year--next.is-visible,.mdl-calendar__year--prev.is-visible{display:flex}.mdl-datepicker-wrapper.is-visible{background-color:rgba(0,0,0,.25);display:flex}.mdl-datepicker-wrapper{display:none;flex-direction:column;justify-content:center;align-items:center;position:fixed;top:0;left:0;width:100%;height:100%;z-index:80;background-color:transparent}
-</style>
+<script>
+  $("#select-musica").click(function() {
+    $("#categoria").val("Musica");
+    $("#select-category").addClass("is-dirty"); 
+  });
+  $("#select-teatro").click(function() {
+    $("#categoria").val("Teatro");
+    $("#select-category").addClass("is-dirty"); 
+  });
+  $("#select-sport").click(function() {
+    $("#categoria").val("Sport");
+    $("#select-category").addClass("is-dirty"); 
+  });
+  $("#select-cinema").click(function() {
+    $("#categoria").val("Cinema");
+    $("#select-category").addClass("is-dirty"); 
+  });
+  
+  $("#datepicker").click(function() {
+    $("#datepicker").addClass("is-dirty"); 
+  });
+  $("#data:input").datepicker({ dateFormat: 'yy/mm/dd' });
+  $.datepicker.setDefaults($.datepicker.regional['it']);
+  
+  $('#add-event').click(function(){
+    if($('#titolo').val() == '') || ($('#luogo').val() == '') || ($('#data').val() == '') || ($('#categoria').val() == ''){
+      var snackbarContainer = document.querySelector('#fill-all');
+      snackbarContainer.MaterialSnackbar.showSnackbar(data);
+    }
+  });
+</script>
