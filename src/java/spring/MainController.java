@@ -5,9 +5,11 @@ package spring;
 
 import DAO.DAOCategorie;
 import DAO.DAOEventi;
+import DAO.DAOMembri;
 import DAO.DAORecensioni;
 import Mapping.Categoria;
 import Mapping.Evento;
+import Mapping.Membro;
 import Mapping.Recensione;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -15,6 +17,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -206,5 +210,60 @@ public class MainController
     {
         map.put("idE", idE);
         return "addRecensione";
+    }
+    
+    @RequestMapping(value = "/profile", method = RequestMethod.GET)
+    public String profile(ModelMap map)
+    {
+        return "profile";
+    }
+    
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login(ModelMap map)
+    {
+        return "login";
+    }
+    
+    @RequestMapping(value = "/checkLogin", method = RequestMethod.POST)
+    public String checkLogin(ModelMap map, HttpServletRequest request, @RequestParam(value="username") String username, @RequestParam(value="password") String password)
+    {
+        Membro user = new DAOMembri().checkLogin(username, password);
+        if (user != null)
+        {
+            request.getSession().setAttribute("loggedUserInfo", user);
+            // Utente registrato
+            return "profile";
+        }
+        
+        // Utente non registrato
+        return "login";
+    }
+    
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(ModelMap map, HttpServletRequest request)
+    {
+        HttpSession session = request.getSession();
+        session.setAttribute("loggedUserInfo", null);
+        session.invalidate();
+        
+        return "redirect:./";
+    }
+    
+    @RequestMapping(value = "/registrazione", method = RequestMethod.GET)
+    public String registrazione(ModelMap map)
+    {
+        return "registrazione";
+    }
+    
+    @RequestMapping(value = "/doRegistration", method = RequestMethod.POST)
+    public String doRegistration(ModelMap map, HttpServletRequest request, @RequestParam(value = "username") String username, @RequestParam(value = "password") String password, @RequestParam(value = "name") String name, @RequestParam(value = "surname") String surname, @RequestParam(value = "mail") String mail)
+    {
+        Membro user = new DAOMembri().register(username, password, name, surname, mail);
+        if(user != null)
+        {
+            request.getSession().setAttribute("loggedUserInfo", user);
+            return "profile";
+        }
+        return "registration";
     }
 }

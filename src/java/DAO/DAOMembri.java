@@ -6,8 +6,10 @@
 package DAO;
 
 import Mapping.Membro;
+import hibernate.HibernateUtil;
 import java.util.List;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -58,7 +60,7 @@ public class DAOMembri {
     }
     
     public List<Membro> showMembriNoCommento(){
-        Session session =sessionFactory.openSession();
+        Session session = sessionFactory.openSession();
         Transaction tx=null;
         List listaM=null;
         try{
@@ -75,6 +77,51 @@ public class DAOMembri {
       
     }
     
-    
+    public Membro checkLogin(String nickname, String password)
+    {        
+        Session session = sessionFactory.openSession();
+        
+        String hql = "FROM Membro WHERE nickname = :nick";
+        Query query = session.createQuery(hql);
+        query.setString("nick", nickname);
+        Membro registered = (Membro) query.uniqueResult();
+        
+        session.close();
+
+        if (registered != null && (nickname.equals(registered.getNickname()) && password.equals(registered.getPassword())))
+        {
+            return registered;
+        }
+        return null;
+    }
+
+    public Membro register(String username, String password, String name, String surname, String mail)
+    {
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        
+        Membro m = null;
+        
+        try
+        {
+            tx = session.beginTransaction();
+
+            m = new Membro(username, password, name, surname, mail);
+            
+            session.save(m);
+
+            tx.commit();
+        } catch (HibernateException e)
+        {
+            tx.rollback();
+            e.printStackTrace();
+            return null;
+        } finally
+        {
+            session.close();
+        }
+
+        return m;
+    }
     
 }

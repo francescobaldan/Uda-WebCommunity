@@ -98,6 +98,15 @@ public class Membro implements Serializable {
         this.mail = mail;
     }
 
+    public Membro(String nickname, String password, String nome, String cognome, String mail)
+    {
+        this.nickname = nickname;
+        this.password = password;
+        this.nome = nome;
+        this.cognome = cognome;
+        this.mail = mail;
+    }
+    
     public Integer getIdMembro() {
         return idMembro;
     }
