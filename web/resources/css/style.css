@@ -31,6 +31,10 @@ header {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
+.mdl-button {
+  font-weight: 600!important;
+}
+
 .spacer {
   width: 100%;
   height: 192px;
@@ -55,7 +59,8 @@ header {
   color: rgba(255, 255, 255, 0.7)!important;
 }
 
-.mdl-textfield__label:after {
+#user-label.mdl-textfield__label:after,
+#pass-label.mdl-textfield__label:after{
   background-color: rgba(255, 255, 255, 1)!important;
 }
 
@@ -121,4 +126,104 @@ header {
 
 .mdl-list__item-secondary-action i {
   color: rgba(0, 0, 0, 0.54)!important;
+}
+
+#this-card-is-slim {
+  width: 55%!important;
+}
+
+.add-event {
+  width: 100%!important;
+}
+
+#add-event {
+  float: right;
+}
+
+.mdl-menu__container,
+#select-category-menu {
+  width: 100%!important;
+  background-color: #FAFAFA;
+}
+
+#ui-datepicker-div {
+  background-color: #FAFAFA;
+  box-shadow:0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
+  top: 20%;
+  left: 10%;
+}
+
+.ui-datepicker-calendar thead tr th {
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.54);
+  width: 32px;
+  height: 32px;
+  border-radius: 32px;
+  text-align: center;
+}
+
+.ui-datepicker-calendar tbody tr td {
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.87);
+  width: 32px;
+  height: 32px;
+  border-radius: 32px;
+  text-align: center;
+}
+
+.ui-datepicker-calendar tbody tr td a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.ui-datepicker-current-day {
+  background-color: rgba(33,150,243 ,1);
+  color: white!important;
+}
+
+.ui-datepicker-header {
+  background-color: rgba(33,150,243 ,1);
+}
+
+.ui-datepicker-title {
+  font-size: 24px;
+  color: white;
+  text-align: center;
+  height: 36px;
+}
+
+.ui-datepicker-prev span {
+  color: rgba(0, 0, 0, 0);
+}
+
+.ui-datepicker-prev span:before {
+  font-family: 'Material Icons';
+  content: "\E5C4";
+  color: #FFFFFF;
+  cursor: pointer;
+  font-size: 18px;
+  position: absolute;
+  left: 8px;
+  top: 20px;
+}
+
+.ui-datepicker-next span {
+  color: rgba(0, 0, 0, 0);
+}
+
+.ui-datepicker-next span:after {
+  font-family: 'Material Icons';
+  content: "\E5C8";
+  color: #FFFFFF;
+  cursor: pointer;
+  font-size: 18px;
+  position: absolute;
+  right: 8px;
+  top: 20px;
+}
+
+.ui-state-default {
+  color: inherit!important;
 }

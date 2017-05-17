@@ -105,10 +105,6 @@
           </div>
         </main>
       </div>
-                
-      <div id="fill-all" class="mdl-js-snackbar mdl-snackbar">
-        <div class="mdl-snackbar__text">Devi riempire tutti i campi!</div>
-      </div>
 
     </body>
 </html>
@@ -137,10 +133,4 @@
   $("#data:input").datepicker({ dateFormat: 'yy/mm/dd' });
   $.datepicker.setDefaults($.datepicker.regional['it']);
   
-  $('#add-event').click(function(){
-    if($('#titolo').val() == '') || ($('#luogo').val() == '') || ($('#data').val() == '') || ($('#categoria').val() == ''){
-      var snackbarContainer = document.querySelector('#fill-all');
-      snackbarContainer.MaterialSnackbar.showSnackbar(data);
-    }
-  });
 </script>

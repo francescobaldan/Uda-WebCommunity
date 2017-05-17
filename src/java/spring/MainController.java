@@ -148,7 +148,7 @@ public class MainController
         eventi=daoe.showEventi();
         map.put("lista", eventi);
         
-        return "index";
+        return "redirect:/";
     }
     
     @RequestMapping(value = "/deleteEvento", method = RequestMethod.GET)
