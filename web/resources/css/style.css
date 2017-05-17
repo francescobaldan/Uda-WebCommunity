@@ -228,3 +228,13 @@ header {
 .ui-state-default {
   color: inherit!important;
 }
+.ui-datepicker-prev span:after {
+  font-family: 'Material Icons';
+  content: "\E5C8";
+  color: #FFFFFF;
+  cursor: pointer;
+  font-size: 18px;
+  position: absolute;
+  right: 8px;
+  top: 20px;
+}
