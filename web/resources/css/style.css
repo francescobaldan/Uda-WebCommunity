@@ -2,6 +2,7 @@ html, body {
   background-color: #EEEEEE;
 }
 
+
 /* Fix drawer icon on mobile mode*/
 
 @media (max-width: 1024px) {
