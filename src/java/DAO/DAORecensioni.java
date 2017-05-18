@@ -100,5 +100,33 @@ public class DAORecensioni {
         return listaR;
     }
     
+    public int votoMedio (int idE){
+        Session session =sessionFactory.openSession();
+        Transaction tx=null;
+        List<Recensione> recensioni=null;
+        List<Evento> event=null;
+        Recensione rec=null;
+        int somma=0;
+        int votoMedio=0;
+        try{
+            tx=session.beginTransaction();
+            event=session.createQuery("From Evento Where idEvento="+idE).list();
+            recensioni=session.createQuery("From Recensione Where evento="+event.get(0)).list();
+            for(int i=0; i<recensioni.size(); i++){
+                rec=recensioni.get(i);
+                somma+=rec.getVoto();
+            }
+            votoMedio=somma/recensioni.size();
+            tx.commit();
+        }catch(HibernateException e){
+            if (tx!=null) tx.rollback();
+            e.printStackTrace();
+        }finally{
+            session.close();
+        }
+        return votoMedio;
+        
+    }
+    
 }
 

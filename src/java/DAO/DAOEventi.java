@@ -8,6 +8,7 @@ package DAO;
 import Mapping.Categoria;
 import Mapping.Evento;
 import Mapping.Recensione;
+import Mapping.RecensionePK;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -125,8 +126,15 @@ public class DAOEventi {
         Session session =sessionFactory.openSession();
         Transaction tx=null;
         List<Recensione> listaR=null;
+        List<Recensione> listaRC=null;
         try{
             tx=session.beginTransaction();
+            /*listaRC=session.createQuery("From Recensione").list();
+            for(int i=0; i<listaRC.size(); i++){
+               if(listaRC.get(i).getEvento().getIdEvento()==idE){
+                   listaR.add(listaRC.get(i));
+               }
+            }*/
             listaR=session.createQuery("Select recensioneCollection From Evento Where idEvento="+idE).list();
             tx.commit();
         }catch(HibernateException e){
