@@ -82,20 +82,20 @@
                             music_note
                           </c:if>
                           <c:if test="${e.getCategoria().getIdCategoria() == 2}">
-                            local_library
-                          </c:if>
-                          <c:if test="${e.getCategoria().getIdCategoria() == 3}">
                             directions_bike
                           </c:if>
-                          <c:if test="${e.getCategoria().getIdCategoria() == 4}">
+                          <c:if test="${e.getCategoria().getIdCategoria() == 3}">
                             movie
+                          </c:if>
+                          <c:if test="${e.getCategoria().getIdCategoria() == 4}">
+                            local_library
                           </c:if>
                         </i>
                         <span>${e.titolo}</span>
                         <span class="mdl-list__item-text-body">
                           ${e.luogo}<br>
                           <fmt:formatDate pattern = "dd-MM-yyyy" value = "${e.data}" />
-                          <a href="<c:url value="/deleteEvento?idE=${e.idEvento}&idC=${idCat}" />">Elimina</a>
+                          <a href="<c:url value="/deleteEvento?idE=${e.idEvento}&idC=${idCat}&control=1" />">Elimina</a>
                         </span>
                       </span>
                     </li>

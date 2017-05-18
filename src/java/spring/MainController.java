@@ -156,20 +156,27 @@ public class MainController
     }
     
     @RequestMapping(value = "/deleteEvento", method = RequestMethod.GET)
-    public String deleteEvento(ModelMap map, @RequestParam(value="idE") int idE, @RequestParam(value="idC") int idC)
+    public String deleteEvento(ModelMap map, @RequestParam(value="idE") int idE, @RequestParam(value="idC") int idC, @RequestParam(value="control") int control)
     {
         DAOEventi daoe = new DAOEventi();
         DAOCategorie dao = new DAOCategorie();
         
         daoe.deleteEvento(idE);
-        List<Categoria> listaCat = dao.showCategorie();
-        List<Evento> eventiCategoria = dao.eventiCategoria(idC);
-        map.put("listaCat", listaCat);
-        map.put("categoria", listaCat.get(idC-1));
-        map.put("eventiCategoria", eventiCategoria);
-        map.put("idCat", idC);
+        if(control==1){
+            List<Categoria> listaCat = dao.showCategorie();
+            List<Evento> eventiCategoria = dao.eventiCategoria(idC);
+            map.put("listaCat", listaCat);
+            map.put("categoria", listaCat.get(idC-1));
+            map.put("eventiCategoria", eventiCategoria);
+            map.put("idCat", idC);
+
+            return "specCategoria";
         
-        return "specCategoria";
+        }
+        List<Evento> lista = daoe.showEventi();
+        map.put("lista", lista);
+        
+        return "index";
     }
     
     @RequestMapping(value = "/addRecensione", method = RequestMethod.GET)

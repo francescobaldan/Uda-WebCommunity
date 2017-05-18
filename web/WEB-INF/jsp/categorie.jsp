@@ -69,17 +69,17 @@
                       </c:if>
                       <c:if test="${e.getIdCategoria() == 2}">
                         <i class="material-icons mdl-list__item-avatar evento-teatro">
-                          local_library
+                          directions_bike
                         </i>
                       </c:if>
                       <c:if test="${e.getIdCategoria() == 3}">
                         <i class="material-icons mdl-list__item-avatar evento-sport">
-                          directions_bike
+                          movie
                         </i>
                       </c:if>
                       <c:if test="${e.getIdCategoria() == 4}">
                         <i class="material-icons mdl-list__item-avatar evento-cinema">
-                          movie
+                          local_library
                         </i>
                       </c:if>
                       <span class="mdl-list__item-primary-content">

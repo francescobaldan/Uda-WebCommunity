@@ -80,17 +80,17 @@
                         </c:if>
                         <c:if test="${e.getCategoria().getIdCategoria() == 2}">
                           <i class="material-icons mdl-list__item-avatar evento-teatro" id="${e.idEvento}">
-                            local_library
+                            directions_bike
                           </i>
                         </c:if>
                         <c:if test="${e.getCategoria().getIdCategoria() == 3}">
                           <i class="material-icons mdl-list__item-avatar evento-sport" id="${e.idEvento}">
-                            directions_bike
+                            movie
                           </i>
                         </c:if>
                         <c:if test="${e.getCategoria().getIdCategoria() == 4}">
                           <i class="material-icons mdl-list__item-avatar evento-cinema" id="${e.idEvento}">
-                            movie
+                            local_library
                           </i>
                         </c:if>
                         <div class="mdl-tooltip mdl-tooltip--left" for="${e.idEvento}">${e.categoria.nome}</div>
@@ -98,7 +98,7 @@
                         <span class="mdl-list__item-text-body">
                           ${e.luogo}<br>
                           <fmt:formatDate pattern = "dd-MM-yyyy" value = "${e.data}" />
-                          <a href="<c:url value="/deleteEvento?idE=${e.idEvento}" />">Elimina</a><br>
+                          <a href="<c:url value="/deleteEvento?idE=${e.idEvento}&idC=${e.getCategoria().getIdCategoria()}&control=0" />">Elimina</a><br>
                         </span>
                       </span>
                       <span class="mdl-list__item-secondary-content">
