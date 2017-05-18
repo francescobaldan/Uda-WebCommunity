@@ -4,11 +4,11 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://10.0.1.252:3306/5ib02?zeroDateTimeBehavior=convertToNull</property>
-    <property name="hibernate.connection.username">5ib02</property>
-    <property name="hibernate.connection.password">5ib02</property>
+    <property name="hibernate.connection.url">jdbc:mysql://sql11.freesqldatabase.com:3306/sql11173924?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">sql11173924</property>
+    <property name="hibernate.connection.password">7wsucxT3Bb</property>
     <property name="hibernate.show_sql">true</property>
-    <property name="hibernate.format_sql">true</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory</property>
+    <property name="hibernate.format_sql">true</property>
   </session-factory>
 </hibernate-configuration>

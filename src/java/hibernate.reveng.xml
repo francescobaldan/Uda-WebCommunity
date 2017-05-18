@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 <hibernate-reverse-engineering>
-  <schema-selection match-catalog="5ib02"/>
+  <schema-selection match-catalog="sql11173924"/>
   <table-filter match-name="MEMBRI"/>
-  <table-filter match-name="CATEGORIE"/>
-  <table-filter match-name="PREFERENZE"/>
-  <table-filter match-name="RECENSIONI"/>
   <table-filter match-name="ARTISTI"/>
-  <table-filter match-name="PARTECIPAZIONI"/>
+  <table-filter match-name="PREFERENZE"/>
+  <table-filter match-name="CATEGORIE"/>
   <table-filter match-name="EVENTI"/>
+  <table-filter match-name="RECENSIONI"/>
+  <table-filter match-name="PARTECIPAZIONI"/>
 </hibernate-reverse-engineering>

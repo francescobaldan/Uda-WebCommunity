@@ -235,15 +235,15 @@ public class MainController
     public String checkLogin(ModelMap map, HttpServletRequest request, @RequestParam(value="username") String username, @RequestParam(value="password") String password)
     {
         Membro user = new DAOMembri().checkLogin(username, password);
+        DAOEventi dao = new DAOEventi();
+        
+        List<Evento> lista = dao.showEventi();
+        map.put("lista", lista);
         if (user != null)
         {
             request.getSession().setAttribute("loggedUserInfo", user);
-            // Utente registrato
-            return "profile";
         }
-        
-        // Utente non registrato
-        return "login";
+        return "index";
     }
     
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
@@ -256,21 +256,18 @@ public class MainController
         return "redirect:./";
     }
     
-    @RequestMapping(value = "/registrazione", method = RequestMethod.GET)
-    public String registrazione(ModelMap map)
-    {
-        return "registrazione";
-    }
-    
     @RequestMapping(value = "/doRegistration", method = RequestMethod.POST)
     public String doRegistration(ModelMap map, HttpServletRequest request, @RequestParam(value = "username") String username, @RequestParam(value = "password") String password, @RequestParam(value = "name") String name, @RequestParam(value = "surname") String surname, @RequestParam(value = "mail") String mail)
     {
         Membro user = new DAOMembri().register(username, password, name, surname, mail);
+        DAOEventi dao = new DAOEventi();
+        
+        List<Evento> lista = dao.showEventi();
+        map.put("lista", lista);
         if(user != null)
         {
             request.getSession().setAttribute("loggedUserInfo", user);
-            return "profile";
         }
-        return "registration";
+        return "index";
     }
 }
